@@ -1,13 +1,14 @@
-const getLocationButton = document.getElementById("getLocation");
-const weatherDiv = document.getElementById("weather");
+const apiKey = "db02b055afbb014b657f0e56aaabb7d1"; // From https://home.openweathermap.org/api_keys
+const getLocationButton = $('#getLocation');
+const weatherDiv = $('#weather');
 
-getLocationButton.addEventListener("click", () => {
-    // Show loading feedback
-    weatherDiv.innerHTML = "<p>Fetching your location and weather details...</p>";
+getLocationButton.on('click', () => {
+    // Show loading spinner
+    weatherDiv.html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
 
     // Check if Geolocation is supported
     if (!navigator.geolocation) {
-        weatherDiv.innerHTML = "<p>Geolocation is not supported by your browser.</p>";
+        weatherDiv.html('<div class="alert alert-danger" role="alert">Geolocation is not supported by your browser.</div>');
         return;
     }
 
@@ -19,14 +20,13 @@ getLocationButton.addEventListener("click", () => {
         },
         (error) => {
             console.error(error);
-            weatherDiv.innerHTML = "<p>Unable to fetch your location. Please try again.</p>";
+            weatherDiv.html('<div class="alert alert-danger" role="alert">Unable to fetch your location. Please try again.</div>');
         }
     );
 });
 
 // Fetch weather data using OpenWeatherMap API
 async function fetchWeather(latitude, longitude) {
-    const apiKey = "db02b055afbb014b657f0e56aaabb7d1"; // Replace with your OpenWeatherMap API key
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
 
     try {
@@ -35,14 +35,16 @@ async function fetchWeather(latitude, longitude) {
         displayWeather(data, latitude, longitude); // Display weather data
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        weatherDiv.innerHTML = "<p>Unable to fetch weather data. Please try again later.</p>";
+        weatherDiv.html('<div class="alert alert-danger" role="alert">Unable to fetch weather data. Please try again later.</div>');
     }
 }
 
 // Display weather data in the UI
 function displayWeather(data, latitude, longitude) {
     const { name, weather, main } = data; // Extract weather details
+    const iconCode = weather[0].icon; // Weather icon code
     const weatherHTML = `
+        <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${weather[0].description}" class="weather-icon" />
         <div class="weather-info">
             <h2>${name || "Unknown Location"}</h2>
             <p><strong>Coordinates:</strong> ${latitude.toFixed(2)}, ${longitude.toFixed(2)}</p>
@@ -50,5 +52,5 @@ function displayWeather(data, latitude, longitude) {
             <p><strong>Condition:</strong> ${weather[0].description}</p>
         </div>
     `;
-    weatherDiv.innerHTML = weatherHTML;
+    weatherDiv.html(weatherHTML);
 }
