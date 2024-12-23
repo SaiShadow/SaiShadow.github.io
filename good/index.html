@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        /* HCI principle: Affordance */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #weather {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+
+        .weather-info {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Travel Planner</h1>
+    <button id="getLocation">Show Current Location and Weather</button>
+    <div id="weather">
+        <p>Click the button to see your current location and weather details.</p>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
