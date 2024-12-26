@@ -88,14 +88,13 @@ function generateWeatherHTML(data, latitude, longitude) {
 // Add event listener for Add Location button
 $('#add-location-button').on('click', addLocation);
 
-// Enable "Enter" key for adding location
-function setupEnterKeyListener() {
-    $('#location-name').on('keypress', (e) => {
-        if (e.which === 13) { // Enter key
-            addLocation();
-        }
-    });
-}
+$('#location-name').on('keydown', (e) => {
+    if (e.key === 'Enter') { // Check for the 'Enter' key
+        e.preventDefault(); // Prevent default behavior
+        addLocation(); // Call the addLocation function
+    }
+});
+
 
 // Add location logic
 async function addLocation() {
