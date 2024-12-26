@@ -6,7 +6,6 @@ const locationsList = $('#locations-list');
 $(document).ready(() => {
     fetchLocationAndWeather();
     displaySavedLocations(); // Load saved locations on page load
-    setupEnterKeyListener(); // Enable "Enter" key functionality
 });
 
 function fetchLocationAndWeather() {
