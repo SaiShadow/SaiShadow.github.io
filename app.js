@@ -107,7 +107,7 @@ async function addLocation() {
 
     const coordinates = await fetchCoordinates(locationName);
     if (coordinates) {
-        saveLocation(locationName, coordinates.latitude, coordinates.longitude);
+        saveLocation(coordinates.name, coordinates.latitude, coordinates.longitude);
         displaySavedLocations();
     }
 }
