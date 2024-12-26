@@ -52,6 +52,40 @@ body {
     height: 2rem;
 }
 
+.list-group-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.list-group-item .d-flex {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-group-item strong {
+    font-size: 1.1rem;
+}
+
+.list-group-item .text-muted {
+    font-size: 0.85rem;
+}
+
+.list-group-item .btn-danger {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+}
+
+#locations-list {
+    padding: 0;
+    margin-top: 20px;
+}
+
 /* Responsive design adjustments */
 @media (max-width: 600px) {
     .container {
