@@ -113,7 +113,7 @@ async function addLocation() {
 
 // Fetch coordinates using OpenWeatherMap Geocoding API
 async function fetchCoordinates(locationName) {
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${apiKey}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
