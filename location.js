@@ -11,6 +11,7 @@ async function addLocation() {
     if (coordinates) {
         saveLocation(coordinates.name, coordinates.latitude, coordinates.longitude);
         displaySavedLocations();
+        $('#location-name').val('');  // Clear the input field if the location was successfully added
     }
 }
 
@@ -35,14 +36,21 @@ async function fetchCoordinates(locationName) {
     }
 }
 
-// Save location to LocalStorage
+/**
+ * Save location to LocalStorage
+ * @param {*} name name of the location
+ * @param {*} latitude latitude of the location
+ * @param {*} longitude longitude of the location
+ */
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
-    savedLocations.unshift({ name, latitude, longitude });
+    savedLocations.unshift({ name, latitude, longitude }); // Add new location to the beginning of the array
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
-
-// Display saved locations
+/**
+ * Display saved locations, refresh weather data everytime this function is called,
+ * so whenever a new location is added or deleted.
+ */
 function displaySavedLocations() {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     locationsList.empty();
@@ -63,8 +71,10 @@ function displaySavedLocations() {
         fetchWeather(location.latitude, location.longitude, targetDiv);
     });
 }
-
-// Delete location
+/**
+ * Delete location from LocalStorage and display updated list of saved locations.
+ * @param {*} index Index of the location to delete
+ */
 function deleteLocation(index) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     savedLocations.splice(index, 1);
