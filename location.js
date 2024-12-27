@@ -28,8 +28,8 @@ async function fetchCoordinates(locationName) {
             return null;
         }
 
-        const { lat, lon } = data[0];
-        return { latitude: lat, longitude: lon };
+        const {lat, lon} = data[0];
+        return {latitude: lat, longitude: lon};
     } catch (error) {
         console.error("Error fetching coordinates:", error);
         alert('Unable to fetch location. Please try again.');
@@ -46,7 +46,7 @@ async function fetchCoordinates(locationName) {
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     // Add new location to the beginning of the array
-    savedLocations.unshift({ name, latitude, longitude });
+    savedLocations.unshift({name, latitude, longitude});
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 
@@ -87,13 +87,23 @@ function displaySavedLocations() {
         if (data) {
             const distance = getDistance(location.latitude, location.longitude);
             const travelTimes = calculateTravelTimes(distance);
-            const infoHTML = generateInfoHTMLSavedLocations(data, location.latitude, location.longitude, distance, travelTimes, index);
+
+            const infoHTML = generateInfoHTMLSavedLocations(//
+                data,//
+                location.latitude,//
+                location.longitude,//
+                distance,//
+                travelTimes,//
+                index//
+            );
             targetDiv.html(infoHTML);
         } else {
-            targetDiv.html(getErrorDiv('Unable to fetch location data. Please try again later.'));
+            targetDiv.html(getErrorDiv('Unable to fetch location data. ' + //
+                'Please try again later.'));
         }
     });
 }
+
 /**
  * Delete location from LocalStorage and display updated list of saved locations.
  * @param {*} index Index of the location to delete
