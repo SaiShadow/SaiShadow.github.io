@@ -24,7 +24,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 // Display distance between user's location and a given location
 function displayDistance(location) {
     const distance = getDistance(location.latitude, location.longitude);
-    return `<p><strong>Distance:</strong> ${distance.toFixed(2)} km</p>`;
+    return `<p><strong>Distance:</strong> ${distance} km</p>`;
 }
 
 // Get distance between user's location and a given location
