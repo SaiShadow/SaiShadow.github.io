@@ -235,25 +235,25 @@ body {
     background-color: #c82333;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .locations-list {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+/*!* Responsive Design *!*/
+/*@media (max-width: 768px) {*/
+/*    .locations-list {*/
+/*        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+/*    }*/
 
-    .weather-info-location {
-        padding: 10px;
-    }
+/*    .weather-info-location {*/
+/*        padding: 10px;*/
+/*    }*/
 
-    .travel-time-list li {
-        font-size: 0.8rem;
-    }
+/*    .travel-time-list li {*/
+/*        font-size: 0.8rem;*/
+/*    }*/
 
-    .delete-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-}
+/*    .delete-btn {*/
+/*        padding: 8px 12px;*/
+/*        font-size: 0.8rem;*/
+/*    }*/
+/*}*/
 
 @media (max-width: 600px) {
 
