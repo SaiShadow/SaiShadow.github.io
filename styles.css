@@ -46,6 +46,28 @@ body {
     font-size: 0.9rem;
 }
 
+.weather-info-location {
+    text-align: left;
+}
+
+.weather-info-location h2 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.weather-info-location p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.weather-info-location .distance {
+    font-weight: bold; 
+    align-self: right;
+    /* margin-left: auto;  */
+    color: #007bff; 
+    font-size: 1rem; 
+}
+
 /* Loading spinner styles */
 .spinner-border {
     width: 2rem;
