@@ -49,6 +49,7 @@ function saveLocation(name, latitude, longitude) {
     savedLocations.unshift({ name, latitude, longitude });
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
+
 /**
  * Display saved locations, refresh weather data everytime this function is called,
  * so whenever a new location is added or deleted.
@@ -57,11 +58,18 @@ function displaySavedLocations() {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     locationsList.empty();
 
+    if (savedLocations.length === 0) {
+        locationsList.html('<p class="text-muted">No saved locations. Add a location to get started.</p>');
+        return;
+    }
+
     savedLocations.forEach((location, index) => {
         const li = `
             <li class="list-group-item">
                 <div class="d-flex justify-content-between align-items-center">
+                <!-- Weather and Distance Info -->
                     <div id="weather-${index}" class="mt-2"></div>
+                <!-- Delete Button -->
                     <button class="btn btn-danger btn-sm" onclick="deleteLocation(${index})">Delete</button>
                 </div>
             </li>
@@ -70,9 +78,10 @@ function displaySavedLocations() {
 
         // Fetch and display weather for each saved location
         const targetDiv = $(`#weather-${index}`);
-        fetchWeather(location.latitude, location.longitude, targetDiv);
+        displaySavedLocationsInfo(location.latitude, location.longitude, targetDiv);
     });
 }
+
 /**
  * Delete location from LocalStorage and display updated list of saved locations.
  * @param {*} index Index of the location to delete
