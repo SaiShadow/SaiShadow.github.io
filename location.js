@@ -11,7 +11,8 @@ async function addLocation() {
     if (coordinates) {
         saveLocation(coordinates.name, coordinates.latitude, coordinates.longitude);
         displaySavedLocations();
-        $('#location-name').val('');  // Clear the input field if the location was successfully added
+        // Clear the input field if the location was successfully added
+        $('#location-name').val('');
     }
 }
 
@@ -44,7 +45,8 @@ async function fetchCoordinates(locationName) {
  */
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
-    savedLocations.unshift({ name, latitude, longitude }); // Add new location to the beginning of the array
+    // Add new location to the beginning of the array
+    savedLocations.unshift({ name, latitude, longitude });
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 /**
