@@ -45,6 +45,7 @@ body {
     text-align: left; /* Align text to the left */
 }
 
+/*TODO: this is Only for USER??*/
 .weather-icon {
     width: 40px; /* Smaller icon size */
     height: 40px;
@@ -90,7 +91,7 @@ body {
     display: flex;
     align-items: center; /* Align items vertically */
     justify-content: center;
-    gap: 10px; /* Spacing between input and button */
+    gap: 5px; /* Spacing between input and button */
 }
 
 .location-input {
@@ -310,14 +311,42 @@ body {
         align-self: flex-end; /* Ensure it stays in the row */
     }
 
+    .travel-times p {
+        font-size: 0.8rem; /* Smaller text size */
+    }
+
+    .travel-time-list li {
+        font-size: 0.8rem; /* Adjust the list items as well */
+    }
+
+    .location-name {
+        font-size: 0.1rem; /* Smaller font size for name */
+    }
+
+    .distance {
+        font-size: 0.8rem; /* Smaller font size for distance */
+    }
+
+    .location-input-container {
+        margin: 10px 0;
+        display: flex;
+        align-items: center; /* Align items vertically */
+        justify-content: center;
+        gap: 3px; /* Spacing between input and button */
+    }
+
     .location-input {
         width: 100%;
         height: 30px; /* Match height with the input field */
     }
 
+    .location-input::placeholder {
+        font-size: 0.8rem; /* Smaller font size for placeholder text */
+    }
+
     .add-location-button {
         width: auto; /* Ensure button remains smaller */
         font-size: 0.7rem; /* Adjust this value to change text size */
-        height: 30px; /* Match height with the input field */
+        height: 29px; /* Match height with the input field */
     }
 }
