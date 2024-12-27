@@ -1,14 +1,21 @@
-/* General styles */
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    padding-top: 20px;
+    padding: 20px;
+}
+
+#app-name {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
 #weather {
@@ -27,9 +34,22 @@ body {
     min-height: 120px; /* Ensure consistent height during loading */
 }
 
+#weather h2 {
+    font-size: 1.2rem; /* Adjust font size */
+    margin: 5px 0; /* Add spacing */
+}
+
+#weather p {
+    font-size: 0.9rem; /* Smaller font size */
+    margin: 2px 0; /* Adjust spacing between lines */
+    text-align: left; /* Align text to the left */
+}
+
+/*TODO: this is Only for USER??*/
 .weather-icon {
-    width: 50px;
-    height: 50px;
+    width: 40px; /* Smaller icon size */
+    height: 40px;
+    margin: 5px 0; /* Add spacing around the icon */
 }
 
 .weather-info {
@@ -46,89 +66,287 @@ body {
     font-size: 0.9rem;
 }
 
-.weather-info-location {
-    text-align: left;
-}
-
-.weather-info-location h2 {
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.weather-info-location p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
-.weather-info-location .distance {
-    font-weight: bold; 
-    align-self: right;
-    /* margin-left: auto;  */
-    color: #007bff; 
-    font-size: 1rem; 
-}
-
-/* Loading spinner styles */
-.spinner-border {
+.loading-spinner {
     width: 2rem;
     height: 2rem;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: block;
+    margin: auto;
 }
 
-.list-group-item {
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.location-input-container {
+    margin: 20px 0;
     display: flex;
-    flex-direction: column;
-    padding: 15px;
-    margin-bottom: 10px;
+    align-items: center; /* Align items vertically */
+    justify-content: center;
+    gap: 5px; /* Spacing between input and button */
+}
+
+.location-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.location-input:focus {
+    border-color: #007bff;
+}
+
+.add-location-button {
+    padding: 0 20px; /* Adjust horizontal padding */
+    font-size: 1rem;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    height: 42px; /* Match height with the input field */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center text vertically and horizontally */
+    box-sizing: border-box; /* Ensure padding doesn't increase height */
+}
+
+.add-location-button:hover {
+    background-color: #218838;
+}
+
+/* Saved Locations Section */
+.saved-locations-container {
+    margin-top: 20px;
+    text-align: center; /* Center the "Saved Locations" text */
+}
+
+.saved-locations-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Location List Layout */
+.locations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    justify-content: center; /* Center the boxes */
+}
+
+/* Individual Location Card */
+.weather-info-location {
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
-}
-
-.list-group-item .d-flex {
-    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     justify-content: space-between;
 }
 
-.list-group-item strong {
-    font-size: 1.1rem;
+/* Layout for content within the card */
+.weather-info-location-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
 }
 
-.list-group-item .text-muted {
-    font-size: 0.85rem;
+/* Left Section: Basic Info */
+.location-details {
+    flex: 1;
+    text-align: left;
 }
 
-.list-group-item .btn-danger {
-    font-size: 0.85rem;
-    padding: 5px 10px;
+.location-details h5 {
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-#locations-list {
+.location-details .weather-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.distance {
+    font-size: 0.9rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Right Section: Travel Times */
+.travel-times {
+    flex: 1;
+    text-align: left;
+}
+
+.travel-time-list {
+    list-style: none;
     padding: 0;
-    margin-top: 20px;
+    margin: 10px 0;
 }
 
-/* Responsive design adjustments */
-@media (max-width: 600px) {
-    .container {
+.travel-time-list li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.travel-time-list li i {
+    margin-right: 8px;
+}
+
+/* Delete Button */
+.delete-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .locations-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .weather-info-location {
         padding: 10px;
     }
 
-    #weather {
-        max-width: 90%;
-        padding: 10px;
-    }
-
-    .weather-info h2 {
-        font-size: 1rem;
-    }
-
-    .weather-info p {
+    .travel-time-list li {
         font-size: 0.8rem;
     }
 
-    .weather-icon {
-        width: 40px;
-        height: 40px;
+    .delete-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    #app-name {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* Weather Section */
+    #weather {
+        margin-top: 20px;
+        padding: 10px; /* Reduce padding */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: white;
+        display: flex;
+        flex-direction: column; /* Stack content vertically */
+        align-items: center;
+        justify-content: center;
+        max-width: 300px; /* Adjust width */
+        margin: 0 auto; /* Center the box */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        min-height: 75px; /* Adjust height */
+    }
+
+    .saved-locations-container h3 {
+        font-size: 1rem;
+    }
+
+    .locations-list {
+        grid-template-columns: 1fr;
+    }
+
+    .weather-info-location {
+        padding: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .weather-info-location-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location-details h5 {
+        font-size: 1rem;
+    }
+
+    .delete-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin-top: 0; /* Align to the row */
+        margin-left: auto; /* Push to the far right */
+        align-self: flex-end; /* Ensure it stays in the row */
+    }
+
+    .travel-times p {
+        font-size: 0.8rem; /* Smaller text size */
+    }
+
+    .travel-time-list li {
+        font-size: 0.8rem; /* Adjust the list items as well */
+    }
+
+    .location-name {
+        font-size: 0.1rem; /* Smaller font size for name */
+    }
+
+    .distance {
+        font-size: 0.8rem; /* Smaller font size for distance */
+    }
+
+    .location-input-container {
+        margin: 10px 0;
+        display: flex;
+        align-items: center; /* Align items vertically */
+        justify-content: center;
+        gap: 3px; /* Spacing between input and button */
+    }
+
+    .location-input {
+        width: 100%;
+        height: 30px; /* Match height with the input field */
+    }
+
+    .location-input::placeholder {
+        font-size: 0.8rem; /* Smaller font size for placeholder text */
+    }
+
+    .add-location-button {
+        width: auto; /* Ensure button remains smaller */
+        font-size: 0.7rem; /* Adjust this value to change text size */
+        height: 29px; /* Match height with the input field */
     }
 }

@@ -28,8 +28,8 @@ async function fetchCoordinates(locationName) {
             return null;
         }
 
-        const { lat, lon } = data[0];
-        return { latitude: lat, longitude: lon };
+        const {lat, lon} = data[0];
+        return {latitude: lat, longitude: lon};
     } catch (error) {
         console.error("Error fetching coordinates:", error);
         alert('Unable to fetch location. Please try again.');
@@ -46,7 +46,7 @@ async function fetchCoordinates(locationName) {
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     // Add new location to the beginning of the array
-    savedLocations.unshift({ name, latitude, longitude });
+    savedLocations.unshift({name, latitude, longitude});
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 
@@ -63,22 +63,44 @@ function displaySavedLocations() {
         return;
     }
 
-    savedLocations.forEach((location, index) => {
-        const li = `
-            <li class="list-group-item">
-                <div class="d-flex justify-content-between align-items-center">
-                <!-- Weather and Distance Info -->
-                    <div id="weather-${index}" class="mt-2"></div>
-                <!-- Delete Button -->
-                    <button class="btn btn-danger btn-sm" onclick="deleteLocation(${index})">Delete</button>
-                </div>
-            </li>
-        `;
-        locationsList.append(li);
+    let row = '<div class="row g-3">'; // Bootstrap row for grid layout
 
-        // Fetch and display weather for each saved location
+    savedLocations.forEach(async (location, index) => {
+        const targetDivId = `weather-${index}`;
+        row += `
+            <div class="col-12 col-md-6 col-lg-4"> <!-- Adjust width dynamically -->
+                <div class="location-card" id="${targetDivId}">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    row += '</div>';
+    locationsList.append(row);
+
+    savedLocations.forEach(async (location, index) => {
         const targetDiv = $(`#weather-${index}`);
-        displaySavedLocationsInfo(location.latitude, location.longitude, targetDiv);
+        const data = await getWeatherData(location.latitude, location.longitude);
+        if (data) {
+            const distance = getDistance(location.latitude, location.longitude);
+            const travelTimes = calculateTravelTimes(distance);
+
+            const infoHTML = generateInfoHTMLSavedLocations(//
+                data,//
+                location.latitude,//
+                location.longitude,//
+                distance,//
+                travelTimes,//
+                index//
+            );
+            targetDiv.html(infoHTML);
+        } else {
+            targetDiv.html(getErrorDiv('Unable to fetch location data. ' + //
+                'Please try again later.'));
+        }
     });
 }
 
