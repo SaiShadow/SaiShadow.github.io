@@ -38,7 +38,7 @@ async function fetchCoordinates(locationName) {
 // Save location to LocalStorage
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
-    savedLocations.push({ name, latitude, longitude });
+    savedLocations.unshift({ name, latitude, longitude });
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 
