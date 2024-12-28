@@ -70,9 +70,6 @@ function displaySavedLocations() {
         row += `
             <div class="col-12 col-md-6 col-lg-4"> <!-- Adjust width dynamically -->
                 <div class="location-card" id="${targetDivId}">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
                 </div>
             </div>
         `;
@@ -83,13 +80,13 @@ function displaySavedLocations() {
 
     savedLocations.forEach(async (location, index) => {
         const targetDiv = $(`#weather-${index}`);
-        const data = await getWeatherData(location.latitude, location.longitude);
-        if (data) {
+        const weatherData = await getWeatherDataFromCache(location.latitude, location.longitude);
+        if (weatherData) {
             const distance = getDistance(location.latitude, location.longitude);
             const travelTimes = calculateTravelTimes(distance);
 
             const infoHTML = generateInfoHTMLSavedLocations(//
-                data,//
+                weatherData,//
                 location.latitude,//
                 location.longitude,//
                 distance,//
@@ -109,8 +106,12 @@ function displaySavedLocations() {
  * @param {*} index Index of the location to delete
  */
 function deleteLocation(index) {
+    deleteLocationFromStorage(index);
+    displaySavedLocations();
+}
+
+function deleteLocationFromStorage(index) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     savedLocations.splice(index, 1);
     localStorage.setItem('locations', JSON.stringify(savedLocations));
-    displaySavedLocations();
 }
