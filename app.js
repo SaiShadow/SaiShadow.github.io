@@ -17,4 +17,9 @@ $(document).ready(() => {
             });
         }
     });
+
+    $('#open-canvas-btn').on('click', () => {//
+        window.open('visualization.html', '_blank');//
+    });
+
 });
