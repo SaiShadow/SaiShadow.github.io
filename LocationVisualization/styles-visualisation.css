@@ -1,0 +1,252 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Canvas Container */
+#visualization-canvas {
+    width: 100%;
+    height: 80vh;
+    border: 2px solid #ddd;
+    display: block;
+    margin: 20px auto;
+    background-color: #fff;
+    cursor: grab; /* Visual indicator for draggable canvas */
+}
+
+#visualization-canvas:active {
+    cursor: grabbing;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #visualization-canvas {
+        height: 70vh;
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #visualization-canvas {
+        height: 60vh;
+    }
+
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    #visualization-canvas {
+        height: 50vh;
+    }
+
+}
+
+/* Hover Effects for Elements */
+canvas:hover {
+    border-color: #007bff;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Add Compass Directions Styling */
+.compass {
+    position: absolute;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.compass.north {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.compass.south {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.compass.east {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.compass.west {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+/* Transitions for Smoothness */
+#visualization-canvas {
+    transition: transform 0.2s ease-in-out;
+}
+
+canvas:active {
+    transition: none; /* Disable transition while dragging */
+}
+
+#dark-mode-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+#dark-mode-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+#reset-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+#reset-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Adding Dark Mode Support */
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+body.dark-mode h1 {
+    color: #f0f0f0;
+}
+
+/* Legend text in dark mode */
+body.dark-mode .legend {
+    background: #2c2c2c;
+    border-color: #444;
+    color: white; /* Change legend text color to white */
+}
+
+/* Node names in dark mode */
+body.dark-mode canvas {
+    color: white; /* Ensure canvas content respects the dark mode */
+}
+
+body.dark-mode #visualization-canvas {
+    background-color: #2c2c2c;
+    border-color: #444;
+}
+
+/* Cardinal indicators in dark mode */
+body.dark-mode canvas {
+    color: white;
+}
+
+body.dark-mode #dark-mode-button {
+    background-color: #007bff;
+    color: white;
+}
+
+body.dark-mode #dark-mode-button:hover {
+    background-color: #0056b3;
+}
+
+/* Accessibility Enhancements */
+canvas:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 4px;
+}
+
+.legend {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above the canvas */
+    font-size: 14px;
+    width: auto;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.short-distance {
+    background-color: green;
+}
+
+.medium-distance {
+    background-color: orange;
+}
+
+.long-distance {
+    background-color: red;
+}
+
+@media (max-width: 768px) {
+    .legend {
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+    }
+
+    .legend-box {
+        width: 15px;
+        height: 15px;
+    }
+}

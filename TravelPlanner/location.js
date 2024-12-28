@@ -50,6 +50,15 @@ function saveLocation(name, latitude, longitude) {
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 
+function turnOffCanvasButtonVisibility() {
+    $('#open-canvas-btn').css('display', 'none');
+
+}
+
+function turnOnCanvasButtonVisibility() {
+    $('#open-canvas-btn').css('display', 'inline-block');
+}
+
 /**
  * Display saved locations, refresh weather data everytime this function is called,
  * so whenever a new location is added or deleted.
@@ -60,7 +69,10 @@ function displaySavedLocations() {
 
     if (savedLocations.length === 0) {
         locationsList.html('<p class="text-muted">No saved locations. Add a location to get started.</p>');
+        turnOffCanvasButtonVisibility();
         return;
+    } else {
+        turnOnCanvasButtonVisibility();
     }
 
     let row = '<div class="row g-3">'; // Bootstrap row for grid layout

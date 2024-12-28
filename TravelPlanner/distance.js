@@ -1,11 +1,3 @@
-let userCoordinates = null; // Global variable to store user's current coordinates
-
-// Save user's current coordinates
-function saveUserCoordinates(latitude, longitude) {
-    userCoordinates = { latitude, longitude };
-    localStorage.setItem('userCoordinates', JSON.stringify(userCoordinates));
-}
-
 // Haversine formula to calculate distance between two coordinates
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const toRadians = (degrees) => degrees * (Math.PI / 180);
