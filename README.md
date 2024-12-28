@@ -3,10 +3,11 @@ https://saishadow.github.io/
 
 
 HTML Features:\
+\
 Geolocation, \
 Local storage,\
 Responsive Design,\
-Canvas\
+Canvas
 
 \
 Tested with Chrome\
