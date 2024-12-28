@@ -4,7 +4,8 @@ https://saishadow.github.io/
 
 HTML Features:
 Geolocation,
-Local storage
+Local storage,
+Responsive Design
 
 
 Tested with Chrome
