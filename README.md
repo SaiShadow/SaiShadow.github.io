@@ -3,9 +3,10 @@ https://saishadow.github.io/
 
 
 HTML Features:
-Geolocation,
+Geolocation, \n
 Local storage,
-Responsive Design
+Responsive Design,
+Canvas
 
 
 Tested with Chrome
