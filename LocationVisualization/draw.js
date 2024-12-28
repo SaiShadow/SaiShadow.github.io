@@ -50,8 +50,12 @@ function drawLine(x1, y1, x2, y2, distance) {
 }
 
 function calculateCanvasPosition(latitude, longitude) {
-    const x = (longitude - userCoordinates.longitude) * 100 * scale + offsetX;
-    const y = (latitude - userCoordinates.latitude) * -100 * scale + offsetY;
+    const deltaLat = latitude - userCoordinates.latitude;
+    const deltaLon = longitude - userCoordinates.longitude;
+
+    const x = offsetX + deltaLon * 100 * scale; // Longitude affects horizontal placement
+    const y = offsetY - deltaLat * 100 * scale; // Latitude affects vertical placement
+
     return {x, y};
 }
 
@@ -93,28 +97,5 @@ function drawCardinalIndicators() {
 
     // West
     ctx.fillText('W', 10, canvas.height / 2 + 5); // Near the left edge
-}
 
-// Legend
-function drawLegend() {
-    const legend = document.querySelector(".legend");
-    if (!legend) {
-        const legendDiv = document.createElement("div");
-        legendDiv.classList.add("legend");
-        legendDiv.innerHTML = `
-            <div class="legend-item">
-                <span class="short-distance"></span>
-                <span>Short Distance (< 50 km)</span>
-            </div>
-            <div class="legend-item">
-                <span class="medium-distance"></span>
-                <span>Medium Distance (50–200 km)</span>
-            </div>
-            <div class="legend-item">
-                <span class="long-distance"></span>
-                <span>Long Distance (> 200 km)</span>
-            </div>
-        `;
-        document.body.appendChild(legendDiv);
-    }
 }
