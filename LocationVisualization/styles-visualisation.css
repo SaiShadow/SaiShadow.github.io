@@ -33,42 +33,6 @@ h1 {
     cursor: grabbing;
 }
 
-/* Back Button */
-#back-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-#back-button:hover {
-    background-color: #218838;
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-/* Tooltip Styles */
-.tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.tooltip.show {
-    opacity: 1;
-}
 
 /* Responsive Design */
 @media (max-width: 1024px) {
@@ -79,11 +43,6 @@ h1 {
     #visualization-canvas {
         height: 70vh;
         width: 95%;
-    }
-
-    #back-button {
-        padding: 8px 16px;
-        font-size: 14px;
     }
 }
 
@@ -96,10 +55,6 @@ h1 {
         height: 60vh;
     }
 
-    #back-button {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -111,10 +66,6 @@ h1 {
         height: 50vh;
     }
 
-    #back-button {
-        padding: 5px 10px;
-        font-size: 11px;
-    }
 }
 
 /* Hover Effects for Elements */
@@ -164,6 +115,42 @@ canvas:active {
     transition: none; /* Disable transition while dragging */
 }
 
+#dark-mode-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+#dark-mode-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+#reset-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+#reset-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
 /* Adding Dark Mode Support */
 body.dark-mode {
     background-color: #121212;
@@ -174,17 +161,34 @@ body.dark-mode h1 {
     color: #f0f0f0;
 }
 
+/* Legend text in dark mode */
+body.dark-mode .legend {
+    background: #2c2c2c;
+    border-color: #444;
+    color: white; /* Change legend text color to white */
+}
+
+/* Node names in dark mode */
+body.dark-mode canvas {
+    color: white; /* Ensure canvas content respects the dark mode */
+}
+
 body.dark-mode #visualization-canvas {
     background-color: #2c2c2c;
     border-color: #444;
 }
 
-body.dark-mode #back-button {
+/* Cardinal indicators in dark mode */
+body.dark-mode canvas {
+    color: white;
+}
+
+body.dark-mode #dark-mode-button {
     background-color: #007bff;
     color: white;
 }
 
-body.dark-mode #back-button:hover {
+body.dark-mode #dark-mode-button:hover {
     background-color: #0056b3;
 }
 
@@ -192,4 +196,57 @@ body.dark-mode #back-button:hover {
 canvas:focus-visible {
     outline: 2px solid #007bff;
     outline-offset: 4px;
+}
+
+.legend {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above the canvas */
+    font-size: 14px;
+    width: auto;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.short-distance {
+    background-color: green;
+}
+
+.medium-distance {
+    background-color: orange;
+}
+
+.long-distance {
+    background-color: red;
+}
+
+@media (max-width: 768px) {
+    .legend {
+        top: 10px;
+        right: 10px;
+        font-size: 12px;
+    }
+
+    .legend-box {
+        width: 15px;
+        height: 15px;
+    }
 }

@@ -8,13 +8,13 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
           rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../TravelPlanner/styles.css">
   <link rel="stylesheet" href="styles-visualisation.css">
 </head>
 <body>
 <div class="container">
   <h1>Location Visualization</h1>
-  <!-- Add the static legend directly to the HTML -->
+  <!-- Add static legend -->
   <div class="legend static">
     <div class="legend-item">
       <span class="legend-box short-distance"></span>
@@ -29,10 +29,14 @@
       <span>Long Distance (&gt; 200 km)</span>
     </div>
   </div>
+  <!-- Add Dark Mode and Reset Buttons -->
+  <button id="dark-mode-button">Toggle Dark Mode</button>
+  <button id="reset-button">Reset View</button>
   <canvas id="visualization-canvas"></canvas>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="distance.js"></script>
+<script src="../TravelPlanner/distance.js"></script>
+<script src="draw.js"></script>
 <script src="canvas.js"></script>
 </body>
 </html>
