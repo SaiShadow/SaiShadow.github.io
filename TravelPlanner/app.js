@@ -43,7 +43,7 @@ function handleAddLocationButtonClick() {
 }
 
 /**
- * Handle keydown event for the location name input field
+ * Handle keydown event for the location name input field.
  */
 function handleLocationNameKeydown(e) {
     if (e.key === 'Enter') {
