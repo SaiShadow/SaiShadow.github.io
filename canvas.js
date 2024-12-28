@@ -14,7 +14,7 @@ let dragStartX, dragStartY;
 
 // Fetch saved locations from localStorage
 const savedLocations = JSON.parse(localStorage.getItem("locations")) || [];
-const userCoordinates = JSON.parse(localStorage.getItem("userCoordinates")) || {latitude: 49.2243, longitude: 8.7221};
+const userCoordinates = JSON.parse(sessionStorage.getItem("userCoordinates"));
 
 function drawNode(x, y, label, color = 'red') {
     const nodeSize = Math.max(10 * scale, 2); // Adjust node size with a minimum threshold
@@ -28,9 +28,21 @@ function drawNode(x, y, label, color = 'red') {
     ctx.fillText(label, x + nodeSize + 5, y + 5); // Add label with dynamic positioning
 }
 
-function drawLine(x1, y1, x2, y2) {
-    ctx.strokeStyle = "gray";
-    ctx.lineWidth = 1 / scale; // Scale line width dynamically
+function drawLine(x1, y1, x2, y2, distance) {
+    let color, //
+        thickness = 1.5 * scale;
+    if (distance < 100) {
+        color = "green";
+        // thickness = 2 * scale;
+    } else if (distance < 500) {
+        color = "orange";
+        // thickness = 1.5 * scale;
+    } else {
+        color = "red";
+    }
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = Math.max(thickness, 1 / scale); // Scale line thickness
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -48,6 +60,11 @@ function drawVisualization() {
 
     drawCardinalIndicators();
 
+    if (!userCoordinates) {
+        alert("Can't get the user coordinates. Please wait until Travel Planner finds your location.");
+        return;
+    }
+
     // Draw user location
     const userPosition = calculateCanvasPosition(userCoordinates.latitude, userCoordinates.longitude);
     drawNode(userPosition.x, userPosition.y, "You", "blue");
@@ -55,7 +72,8 @@ function drawVisualization() {
     // Draw saved locations
     savedLocations.forEach((location) => {
         const position = calculateCanvasPosition(location.latitude, location.longitude);
-        drawLine(userPosition.x, userPosition.y, position.x, position.y); // Line from user to location
+        let distance = calculateDistance(userCoordinates.latitude, userCoordinates.longitude, location.latitude, location.longitude);
+        drawLine(userPosition.x, userPosition.y, position.x, position.y, distance); // Line from user to location
         drawNode(position.x, position.y, location.name, "red");
     });
 }
