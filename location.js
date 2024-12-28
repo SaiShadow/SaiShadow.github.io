@@ -28,8 +28,8 @@ async function fetchCoordinates(locationName) {
             return null;
         }
 
-        const {lat, lon} = data[0];
-        return {latitude: lat, longitude: lon};
+        const {name, lat, lon} = data[0];
+        return {name: name, latitude: lat, longitude: lon};
     } catch (error) {
         console.error("Error fetching coordinates:", error);
         alert('Unable to fetch location. Please try again.');

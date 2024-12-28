@@ -6,11 +6,15 @@ $(document).ready(() => {
     displaySavedLocations();   // Load saved locations
 
     // Event listeners
-    $('#add-location-button').on('click', addLocation);
+    $('#add-location-button').on(//
+        'click', addLocation);
+
     $('#location-name').on('keydown', (e) => {
         if (e.key === 'Enter') { // Handle Enter key
             e.preventDefault();
-            addLocation();
+            addLocation().catch((error) => {
+                console.error("Error adding location:", error);
+            });
         }
     });
 });
