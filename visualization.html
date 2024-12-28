@@ -14,6 +14,21 @@
 <body>
 <div class="container">
   <h1>Location Visualization</h1>
+  <!-- Add the static legend directly to the HTML -->
+  <div class="legend static">
+    <div class="legend-item">
+      <span class="legend-box short-distance"></span>
+      <span>Short Distance (&lt; 50 km)</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-box medium-distance"></span>
+      <span>Medium Distance (50–200 km)</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-box long-distance"></span>
+      <span>Long Distance (&gt; 200 km)</span>
+    </div>
+  </div>
   <canvas id="visualization-canvas"></canvas>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
