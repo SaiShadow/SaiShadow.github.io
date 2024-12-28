@@ -58,5 +58,5 @@ function handleLocationNameKeydown(e) {
  * Handle click event for the "Open Canvas" button
  */
 function handleOpenCanvasButtonClick() {
-    window.open('visualization.html', '_blank');
+    window.open('LocationVisualization/visualization.html', '_blank');
 }
