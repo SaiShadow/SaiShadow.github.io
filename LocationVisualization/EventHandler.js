@@ -1,5 +1,7 @@
 let isDragging = false;
 let dragStartX, dragStartY;
+let initialPinchDistance = null;
+let pinchStartScale = null;
 
 /**
  * Initialize mouse events for dragging
@@ -70,10 +72,18 @@ function handleMouseUp() {
  * Handle touch start event
  */
 function handleTouchStart(e) {
-    isDragging = true;
-    const touch = e.touches[0];
-    dragStartX = touch.clientX;
-    dragStartY = touch.clientY;
+    if (e.touches.length === 1) {
+        // Single touch: drag start
+        isDragging = true;
+        const touch = e.touches[0];
+        dragStartX = touch.clientX;
+        dragStartY = touch.clientY;
+    } else if (e.touches.length === 2) {
+        // Two touches: pinch zoom start
+        isDragging = false; // Disable dragging during pinch zoom
+        initialPinchDistance = getPinchDistance(e.touches);
+        pinchStartScale = scale;
+    }
 }
 
 /**
@@ -81,7 +91,8 @@ function handleTouchStart(e) {
  */
 function handleTouchMove(e) {
     e.preventDefault(); // Prevent browser scrolling
-    if (isDragging) {
+    if (e.touches.length === 1 && isDragging) {
+        // Single touch: drag
         const touch = e.touches[0];
         const dx = touch.clientX - dragStartX;
         const dy = touch.clientY - dragStartY;
@@ -89,6 +100,15 @@ function handleTouchMove(e) {
         offsetY += dy;
         dragStartX = touch.clientX;
         dragStartY = touch.clientY;
+        drawVisualization();
+    } else if (e.touches.length === 2) {
+        // Two touches: pinch zoom
+        const pinchDistance = getPinchDistance(e.touches);
+        const zoom = pinchDistance / initialPinchDistance;
+
+        scale = Math.min(Math.max(pinchStartScale * zoom, 0.01), // Minimum zoom level
+            20 // Maximum zoom level
+        );
         drawVisualization();
     }
 }
@@ -98,6 +118,7 @@ function handleTouchMove(e) {
  */
 function handleTouchEnd() {
     isDragging = false;
+    initialPinchDistance = null; // Reset pinch zoom state
 }
 
 /**
@@ -109,7 +130,7 @@ function handleZoom(e) {
     const zoom = e.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
 
     const maxZoomOutScale = 0.01; // Allow much more zoom-out (0.1 for 10%)
-    const maxZoomInScale = 20;  // Allow much more zoom-in (20x zoom)
+    const maxZoomInScale = 20; // Allow much more zoom-in (20x zoom)
 
     // Apply zoom limits
     if (scale * zoom < maxZoomOutScale || scale * zoom > maxZoomInScale) {
@@ -126,6 +147,15 @@ function handleZoom(e) {
     offsetY = mouseY - (mouseY - offsetY) * zoom;
 
     drawVisualization();
+}
+
+/**
+ * Get the distance between two touch points
+ */
+function getPinchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
 }
 
 /**
