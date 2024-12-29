@@ -63,15 +63,14 @@ body {
     text-align: left; /* Align text to the left */
 }
 
-/*TODO: this is Only for USER??*/
+/*TODO: this is only for USER??*/
 .weather-icon {
-    width: 40px; /* Smaller icon size */
+    width: 40px; /* Icon size */
     height: 40px;
-    margin: 5px 0; /* Add spacing around the icon */
 }
 
 .weather-info {
-    text-align: left;
+    text-align: center;
 }
 
 .weather-info h2 {
@@ -80,7 +79,6 @@ body {
 }
 
 .weather-info p {
-    margin: 5px 0;
     font-size: 0.9rem;
 }
 
@@ -199,7 +197,7 @@ body {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px; /* Gap between name and weather icon*/
 }
 
 .location-details .weather-icon {
@@ -305,6 +303,10 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .weather-info {
+        text-align: center;
+    }
+
     .weather-info-location {
         padding: 10px;
         flex-direction: row;
@@ -319,6 +321,7 @@ body {
 
     .location-details h5 {
         font-size: 1rem;
+        gap: 2px;
     }
 
     .delete-btn {
