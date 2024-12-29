@@ -198,6 +198,7 @@ canvas:focus-visible {
     outline-offset: 4px;
 }
 
+/* Legend box */
 .legend {
     position: absolute;
     top: 20px;
@@ -238,6 +239,11 @@ canvas:focus-visible {
     background-color: red;
 }
 
+.ultra-long-distance {
+    background-color: purple;
+}
+
+/* Responsive design for small screens */
 @media (max-width: 768px) {
     .legend {
         top: 10px;

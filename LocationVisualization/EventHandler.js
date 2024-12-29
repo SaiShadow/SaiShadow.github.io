@@ -11,9 +11,9 @@ function initializeMouseEvents() {
  * Initialize touch events for dragging (mobile)
  */
 function initializeTouchEvents() {
-    canvas.addEventListener("touchstart", handleTouchStart);
-    canvas.addEventListener("touchmove", handleTouchMove);
-    canvas.addEventListener("touchend", handleTouchEnd);
+    canvas.addEventListener("touchstart", handleTouchStart, {passive: false});
+    canvas.addEventListener("touchmove", handleTouchMove, {passive: false});
+    canvas.addEventListener("touchend", handleTouchEnd, {passive: false});
 }
 
 /**
@@ -44,6 +44,7 @@ function handleMouseDown(e) {
  * Handle mouse move event
  */
 function handleMouseMove(e) {
+    e.preventDefault(); // Prevent browser scrolling
     if (isDragging) {
         const dx = e.clientX - dragStartX;
         const dy = e.clientY - dragStartY;
@@ -76,6 +77,7 @@ function handleTouchStart(e) {
  * Handle touch move event
  */
 function handleTouchMove(e) {
+    e.preventDefault(); // Prevent browser scrolling
     if (isDragging) {
         const touch = e.touches[0];
         const dx = touch.clientX - dragStartX;
@@ -102,11 +104,12 @@ function handleZoom(e) {
     e.preventDefault();
     const zoomFactor = 1.05; // Smaller value for finer zoom increments
     const zoom = e.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
-    const minScale = 0.5; // Minimum zoom level
-    const maxScale = 5;   // Maximum zoom level
+
+    const maxZoomOutScale = 0.01; // Allow much more zoom-out (0.1 for 10%)
+    const maxZoomInScale = 20;  // Allow much more zoom-in (20x zoom)
 
     // Apply zoom limits
-    if (scale * zoom < minScale || scale * zoom > maxScale) {
+    if (scale * zoom < maxZoomOutScale || scale * zoom > maxZoomInScale) {
         return;
     }
 
