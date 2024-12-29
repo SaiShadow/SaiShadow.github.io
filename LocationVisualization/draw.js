@@ -9,52 +9,87 @@ canvas.height = window.innerHeight * 0.8;
 let offsetX = canvas.width / 2;
 let offsetY = canvas.height / 2;
 let scale = 1; // Zoom level
-let isDragging = false;
-let dragStartX, dragStartY;
 
-// Fetch saved locations from localStorage
+// Sizes
+const minNodeSize = 20;
+const maxNodeSize = 20;
+const minFontSize = 30;
+const maxFontSize = 30;
+
+const minLineThickness = 10;
+const maxLineThickness = 10;
+
+let darkMode = false;
+
+// Fetch saved locations from local storage
 const savedLocations = JSON.parse(localStorage.getItem("locations")) || [];
+// Fetch saved locations from session storage
 const userCoordinates = JSON.parse(sessionStorage.getItem("userCoordinates"));
 
+
 function drawNode(x, y, label, color = 'red') {
-    const nodeSize = Math.max(10 * scale, 2); // Adjust node size with a minimum threshold
+
+    // Calculate dynamic node size within min and max bounds
+    const nodeSize = Math.min(Math.max(10 / scale, minNodeSize), maxNodeSize);
+
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(x, y, nodeSize, 0, Math.PI * 2); // Draw circle with dynamic size
+    ctx.arc(x, y, nodeSize, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = 'black';
-    ctx.font = `${Math.max(12 * scale, 6)}px Arial`; // Adjust font size with a minimum threshold
-    ctx.fillText(label, x + nodeSize + 5, y + 5); // Add label with dynamic positioning
+    // Calculate dynamic font size within min and max bounds
+    let fontSize = Math.min(Math.max(12 / scale, minFontSize), maxFontSize);
+
+    ctx.fillStyle = getFontColor(); // Font color
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fillText(label, x + nodeSize + 5, y + 5);
+}
+
+function getFontColor() {
+    if (darkMode) {
+        return "white";
+    }
+    return "black";
+}
+
+function getLineColor(distance) {
+    let color;
+
+    if (distance < 50) {
+        color = "green";
+    } else if (distance < 200) {
+        color = "orange";
+    } else if (distance < 1000) {
+        color = "red";
+    } else {
+        color = "purple";
+    }
+
+    return color;
 }
 
 function drawLine(x1, y1, x2, y2, distance) {
-    let color, //
-        thickness = 1.5 * scale;
-    if (distance < 100) {
-        color = "green";
-        // thickness = 2 * scale;
-    } else if (distance < 500) {
-        color = "orange";
-        // thickness = 1.5 * scale;
-    } else {
-        color = "red";
-    }
+    let color = getLineColor(distance), //
+        thickness = getLineThickness();
 
     ctx.strokeStyle = color;
-    ctx.lineWidth = Math.max(thickness, 1 / scale); // Scale line thickness
+    ctx.lineWidth = thickness; // Scale line thickness
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
 }
 
+function getLineThickness() {
+    return Math.min(Math.max(1 / scale, minLineThickness), maxLineThickness);
+}
+
 function calculateCanvasPosition(latitude, longitude) {
     const deltaLat = latitude - userCoordinates.latitude;
     const deltaLon = longitude - userCoordinates.longitude;
 
-    const x = offsetX + deltaLon * 100 * scale; // Longitude affects horizontal placement
-    const y = offsetY - deltaLat * 100 * scale; // Latitude affects vertical placement
+    const x = offsetX + deltaLon * 200 * scale; // Longitude affects horizontal placement
+    const y = offsetY - deltaLat * 200 * scale; // Latitude affects vertical placement (negative is up)
 
     return {x, y};
 }
@@ -83,7 +118,7 @@ function drawVisualization() {
 }
 
 function drawCardinalIndicators() {
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = getFontColor();
     ctx.font = '16px Arial';
 
     // North
