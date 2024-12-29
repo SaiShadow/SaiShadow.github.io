@@ -9,8 +9,6 @@ canvas.height = window.innerHeight * 0.8;
 let offsetX = canvas.width / 2;
 let offsetY = canvas.height / 2;
 let scale = 1; // Zoom level
-let isDragging = false;
-let dragStartX, dragStartY;
 
 // Sizes
 const minNodeSize = 20;
@@ -22,9 +20,13 @@ const maxFontSize = 30;
 const minLineThickness = 10;
 const maxLineThickness = 10;
 
-// Fetch saved locations from localStorage
+let darkMode = false;
+
+// Fetch saved locations from local storage
 const savedLocations = JSON.parse(localStorage.getItem("locations")) || [];
+// Fetch saved locations from session storage
 const userCoordinates = JSON.parse(sessionStorage.getItem("userCoordinates"));
+
 
 function drawNode(x, y, label, color = 'red') {
 
@@ -39,9 +41,16 @@ function drawNode(x, y, label, color = 'red') {
     // Calculate dynamic font size within min and max bounds
     let fontSize = Math.min(Math.max(12 / scale, minFontSize), maxFontSize);
 
-    ctx.fillStyle = 'black'; // Font color
+    ctx.fillStyle = getFontColor(); // Font color
     ctx.font = `${fontSize}px Arial`;
     ctx.fillText(label, x + nodeSize + 5, y + 5);
+}
+
+function getFontColor() {
+    if (darkMode) {
+        return "white";
+    }
+    return "black";
 }
 
 function getLineColor(distance) {
@@ -62,14 +71,18 @@ function getLineColor(distance) {
 
 function drawLine(x1, y1, x2, y2, distance) {
     let color = getLineColor(distance), //
-        thickness = 1.5 * scale;
+        thickness = getLineThickness();
 
     ctx.strokeStyle = color;
-    ctx.lineWidth = Math.min(Math.max(1 / scale, minLineThickness), maxLineThickness); // Scale line thickness
+    ctx.lineWidth = thickness; // Scale line thickness
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
+}
+
+function getLineThickness() {
+    return Math.min(Math.max(1 / scale, minLineThickness), maxLineThickness);
 }
 
 function calculateCanvasPosition(latitude, longitude) {
@@ -106,7 +119,7 @@ function drawVisualization() {
 }
 
 function drawCardinalIndicators() {
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = getFontColor();
     ctx.font = '16px Arial';
 
     // North

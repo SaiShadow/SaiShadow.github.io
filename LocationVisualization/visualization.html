@@ -14,34 +14,25 @@
 <body>
 <div class="container">
   <h1>Location Visualization</h1>
-  <!-- Add static legend -->
-  <div class="legend static">
-    <div class="legend-item">
-      <span class="legend-box short-distance"></span>
-      <span>Short Distance (&lt; 50 km)</span>
-    </div>
-    <div class="legend-item">
-      <span class="legend-box medium-distance"></span>
-      <span>Medium Distance (50–200 km)</span>
-    </div>
-    <div class="legend-item">
-      <span class="legend-box long-distance"></span>
-      <span>Long Distance (200-1000 km)</span>
-    </div>
-    <div class="legend-item">
-      <span class="legend-box ultra-long-distance"></span>
-      <span>Ultra Long Distance (&gt; 1000 km)</span>
-    </div>
-  </div>
   <!-- Add Dark Mode and Reset Buttons -->
   <button id="dark-mode-button">Toggle Dark Mode</button>
   <button id="reset-button">Reset View</button>
+
+  <!-- Single-line legend -->
+  <div class="legend">
+    <span class="legend-box" id="short-distance"></span> Short Distance (< 50 km)
+    <span class="legend-box" id="medium-distance"></span> Medium Distance (50–200 km)
+    <span class="legend-box" id="long-distance"></span> Long Distance (200–1000 km)
+    <span class="legend-box" id="ultra-long-distance"></span> Ultra Long Distance (> 1000 km)
+  </div>
+
+  <!-- Canvas-->
   <canvas id="visualization-canvas"></canvas>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../TravelPlanner/distance.js"></script>
-<script src="EventHandler.js"></script>
 <script src="draw.js"></script>
+<script src="EventHandler.js"></script>
 <script src="canvas.js"></script>
 </body>
 </html>

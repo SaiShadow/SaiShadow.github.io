@@ -1,3 +1,6 @@
+let isDragging = false;
+let dragStartX, dragStartY;
+
 /**
  * Initialize mouse events for dragging
  */
@@ -140,4 +143,6 @@ function resetView() {
  */
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
+    darkMode = !darkMode;
+    drawVisualization();
 }

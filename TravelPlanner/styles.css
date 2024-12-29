@@ -34,6 +34,7 @@ body {
 
 #open-canvas-btn:hover {
     background-color: #138496; /* Darker shade for hover effect */
+    transform: scale(1.05);
 }
 
 #weather {
@@ -143,6 +144,7 @@ body {
 
 .add-location-button:hover {
     background-color: #218838;
+    transform: scale(1.05);
 }
 
 /* Saved Locations Section */
@@ -251,6 +253,7 @@ body {
 
 .delete-btn:hover {
     background-color: #c82333;
+    transform: scale(1.05);
 }
 
 /*!* Responsive Design *!*/
