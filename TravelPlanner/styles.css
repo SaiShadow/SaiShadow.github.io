@@ -362,6 +362,10 @@ body {
         font-size: 0.8rem; /* Smaller font size for placeholder text */
     }
 
+    .sr-only{
+        font-size: 0.75rem; /* Smaller font size for placeholder text */
+    }
+
     .add-location-button {
         width: auto; /* Ensure button remains smaller */
         font-size: 0.7rem; /* Adjust this value to change text size */
