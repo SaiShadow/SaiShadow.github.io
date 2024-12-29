@@ -13,7 +13,6 @@ let scale = 1; // Zoom level
 // Sizes
 const minNodeSize = 20;
 const maxNodeSize = 20;
-
 const minFontSize = 30;
 const maxFontSize = 30;
 
