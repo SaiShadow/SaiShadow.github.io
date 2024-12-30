@@ -53,7 +53,7 @@ a seamless experience across devices.
 
 ---
 
-## **HTML Features Used**
+## **HTML5 Features Used:**
 
 - **Location Awareness / Geolocation API**:
     - Fetches the user's current location to provide accurate weather information.
