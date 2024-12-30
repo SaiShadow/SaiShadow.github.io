@@ -18,47 +18,38 @@ h1 {
     text-align: center;
 }
 
-/* Canvas Container */
-#visualization-canvas {
-    width: 100%;
-    height: 80vh;
-    border: 2px solid #ddd;
-    display: block;
-    margin: 20px auto;
-    background-color: #fff;
-    cursor: grab; /* Visual indicator for draggable canvas */
+.title-header {
+    margin-bottom: 1.5rem;
 }
 
-#visualization-canvas:active {
-    cursor: grabbing;
+.container {
+    margin-bottom: 1.5rem;
 }
 
-/* Hover Effects for Elements */
-canvas:hover {
-    border-color: #007bff;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+.controls-section {
+    display: flex; /* Makes the section a flex container */
+    justify-content: center; /* Centers the content horizontally */
+    gap: 0.5rem; /* Adds spacing between child elements (equivalent to gap-2) */
+    margin-bottom: 1rem; /* Adds bottom margin (equivalent to mb-3) */
 }
 
-/* Transitions for Smoothness */
-#visualization-canvas {
-    transition: transform 0.2s ease-in-out;
-}
-
-canvas:active {
-    transition: none; /* Disable transition while dragging */
-}
-
-#dark-mode-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #444;
-    color: white;
+/* Shared Button Styles */
+.button {
+    padding: 0.625rem 0.9375rem; /* ~10px 15px */
+    font-size: 1rem; /* ~16px */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Dark Mode Button */
+#dark-mode-button {
+    background-color: #444;
+    color: white;
 }
 
 #dark-mode-button:hover {
@@ -66,22 +57,25 @@ canvas:active {
     transform: scale(1.05);
 }
 
+#dark-mode-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset View Button */
 #reset-button {
-    padding: 10px 15px;
-    font-size: 16px;
     background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    font-family: 'Arial', sans-serif;
 }
 
 #reset-button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
+}
+
+#reset-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Adding Dark Mode Support */
@@ -126,29 +120,30 @@ canvas:focus-visible {
     outline-offset: 4px;
 }
 
-
-/* Single-line Legend */
+/* Legend Section */
 .legend {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    margin-top: 1.5rem; /* Space above the legend */
+    font-size: 0.8rem; /* Text size for the legend labels */
+    text-align: center; /* Center-align text */
+    display: flex; /* Flexbox for aligning items */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 1rem; /* Space between legend items */
 }
 
+/* Legend Box Styles */
 .legend-box {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-    margin-left: 20px;
-    border-radius: 4px;
-    vertical-align: middle;
+    display: inline-block; /* Allows the box to align next to text */
+    width: 15px; /* Fixed width for legend boxes */
+    height: 15px; /* Fixed height for legend boxes */
+    margin-right: 0.2rem; /* Space between box and label text */
+    margin-left: 1rem;
+    border-radius: 4px; /* Rounded corners */
+    vertical-align: middle; /* Align with label text */
 }
 
+/* Legend Box Colors */
 #short-distance {
     background-color: green;
 }
@@ -163,6 +158,41 @@ canvas:focus-visible {
 
 #ultra-long-distance {
     background-color: purple;
+}
+
+/* Canvas Container */
+.canvas-container {
+    position: relative; /* Allows absolute positioning for child elements (e.g., overlays, compass directions) */
+    width: 100%; /* Ensure the container takes the full width */
+    height: 80vh; /* Occupies 80% of the viewport height */
+    margin: 0 auto; /* Center the canvas horizontally */
+    background-color: #f9f9f9;
+}
+
+#visualization-canvas {
+    width: 100%;
+    height: 80vh;
+    border: 2px solid #ddd;
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+    cursor: grab; /* Visual indicator for draggable canvas */
+    transition: transform 0.2s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#visualization-canvas:active {
+    cursor: grabbing;
+    transform: scale(1.005); /* Slightly scale up the canvas for feedback */
+}
+
+/* Hover Effects for Elements */
+canvas:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+canvas:active {
+    transition: none; /* Disable transition while dragging */
 }
 
 /* Responsive Design */
@@ -191,13 +221,13 @@ canvas:focus-visible {
     }
 
     .legend {
-        font-size: 12px;
+        font-size: 0.55rem; /* Slightly smaller font size for labels */
+        gap: 0.5rem; /* Reduce spacing between items */
     }
 
     .legend-box {
-        width: 12px;
-        height: 12px;
-        margin-left: 45px;
+        width: 12px; /* Smaller box for better fit */
+        height: 12px; /* Smaller box for better fit */
     }
 }
 
@@ -210,4 +240,8 @@ canvas:focus-visible {
         height: 60vh;
     }
 
+    .legend {
+        font-size: 0.5rem; /* Slightly smaller font size for labels */
+        gap: 0; /* Reduce spacing between items */
+    }
 }
