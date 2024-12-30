@@ -7,9 +7,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 75rem;
     text-align: center;
-    padding: 20px;
+    padding: 1.25rem;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -42,19 +42,19 @@ body {
 
 #weather h2 {
     font-size: 1.2rem; /* Adjust font size */
-    margin: 5px 0; /* Add spacing */
+    margin: 0.5rem 0; /* Add spacing */
 }
 
 #weather p {
     font-size: 0.9rem; /* Smaller font size */
-    margin: 2px 0; /* Adjust spacing between lines */
+    margin: 0.125rem 0; /* Adjust spacing between lines */
     text-align: left; /* Align text to the left */
 }
 
 /*this is only for USER*/
 .weather-icon {
-    width: 40px; /* Icon size */
-    height: 40px;
+    width: 2.5rem; /* ~40px */ /* Icon size */
+    height: 2.5rem;
 }
 
 .weather-info {
@@ -102,10 +102,10 @@ body {
 
 .location-input {
     width: 50%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 0.625rem; /* ~10px */
+    font-size: 1rem; /* ~16px */
+    border: 0.0625rem solid #ccc; /* ~1px */
+    border-radius: 0.3125rem; /* ~5px */
     outline: none;
 }
 
@@ -114,21 +114,20 @@ body {
 }
 
 .add-location-button {
-    padding: 0 20px; /* Adjust horizontal padding */
-    font-size: 1rem;
+    padding: 0 1.25rem; /* ~20px horizontal padding */
+    font-size: 1rem; /* ~16px */
     color: white;
     background-color: #28a745;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* ~5px */
     cursor: pointer;
     text-align: center;
-    height: 42px; /* Match height with the input field */
+    height: 2.625rem; /* ~42px */
     display: flex;
     align-items: center;
-    justify-content: center; /* Center text vertically and horizontally */
-    box-sizing: border-box; /* Ensure padding doesn't increase height */
+    justify-content: center;
+    box-sizing: border-box;
 }
-
 .add-location-button:hover {
     background-color: #218838;
     transform: scale(1.05);
@@ -141,13 +140,13 @@ body {
 
 /* Saved Locations Section */
 .saved-locations-container {
-    margin-top: 20px;
+    margin-top: 1.25rem; /* ~20px */
     text-align: center; /* Center the "Saved Locations" text */
 }
 
 .saved-locations-container h3 {
     font-size: 1.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem; /* ~15px */
 }
 
 /*Visualize locations Section*/
