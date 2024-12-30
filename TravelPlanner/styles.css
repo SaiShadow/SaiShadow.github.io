@@ -161,7 +161,7 @@ body {
     color: white;
     border: none;
     border-radius: 0.3125rem; /* ~5px */
-    padding: 0.625rem 1.25rem; /* ~10px 20px */
+    padding: 0.625rem 5rem;
     font-size: 1rem; /* ~16px */
     cursor: pointer;
     margin: 0.3125rem; /* ~5px */
@@ -297,6 +297,10 @@ body {
 
 @media (max-width: 600px) {
 
+    .container{
+        margin-top: 1.25rem;
+    }
+
     #app-name {
         font-size: 1.5rem;
         margin-bottom: 0.3125rem; /* ~5px */
@@ -403,5 +407,53 @@ body {
         width: auto; /* Ensure button remains smaller */
         font-size: 0.8rem; /* Adjust this value to change text size */
         /*height: 29px; !* Match height with the input field *!*/
+    }
+
+    #open-canvas-btn {
+        padding: 0.5rem 4rem; /* Smaller padding (~8px 16px) */
+        font-size: 0.875rem; /* Slightly smaller font size (~14px) */
+        margin: 0.25rem; /* Reduce margin (~4px) */
+    }
+}
+
+/*Mobile M*/
+@media (max-width: 375px) {
+
+    .container{
+        margin-top: 1.2rem;
+    }
+
+    .add-location-button {
+        width: 6rem; /* Ensure button remains smaller */
+        font-size: 0.65rem; /* Adjust this value to change text size */
+    }
+
+    #open-canvas-btn {
+        padding: 0.5rem 3rem;
+        font-size: 0.85rem;
+        margin: 0;
+    }
+}
+
+/*Mobile S*/
+@media (max-width: 320px) {
+
+    .container{
+        margin-top: 1rem;
+    }
+
+    .location-input::placeholder {
+        font-size: 0.8rem; /* Smaller font size for placeholder text */
+    }
+
+    .add-location-button {
+        width: 4rem; /* Ensure button remains smaller */
+        font-size: 0.55rem; /* Adjust this value to change text size */
+    }
+
+    #open-canvas-btn {
+        padding: 0.5rem 2rem;
+        font-size: 0.8rem;
+        margin: 0;
     }
 }

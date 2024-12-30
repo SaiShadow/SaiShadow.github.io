@@ -1,13 +1,13 @@
+Website hosted on:
 https://saishadow.github.io/
 
 
 
-HTML Features:\
-\
-Geolocation, \
-Local storage,\
-Responsive Design,\
-Canvas
+Used the following HTML Features the most:
+   - Geolocation
+   - Local storage and Session Storage
+   - Responsive Design
+   - Canvas
 
 \
-Tested with Chrome\
+Tested on Chrome and Safari.

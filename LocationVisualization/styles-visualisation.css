@@ -29,13 +29,13 @@ h1 {
 .controls-section {
     display: flex; /* Makes the section a flex container */
     justify-content: center; /* Centers the content horizontally */
-    gap: 0.5rem; /* Adds spacing between child elements (equivalent to gap-2) */
+    gap: 2rem; /* Adds spacing between child elements */
     margin-bottom: 1rem; /* ~16px */
 }
 
 /* Shared Button Styles */
 .button {
-    padding: 0.625rem 0.9375rem; /* ~10px 15px */
+    padding: 1rem 5rem;
     font-size: 1rem; /* ~16px */
     border: none;
     border-radius: 0.5rem; /* ~8px */
