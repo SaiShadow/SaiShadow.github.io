@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="../TravelPlanner/styles.css">
     <link rel="stylesheet" href="styles-visualisation.css">
 </head>
+
 <body>
 <div class="container">
     <header class="title-header">
@@ -27,13 +29,14 @@
             <i class="bi bi-arrow-clockwise"></i>
             Reset View
         </button>
+
         <button id="dark-mode-button" class='button'>
             <i class="bi bi-moon-stars"></i>
             Dark Mode
         </button>
     </section>
 
-    <!-- Legend Section -->
+    <!-- Legend Section -> scrollable on smaller screens-->
     <section class="legend">
         <p>
             <span class="legend-box" id="short-distance"></span> Local (< 50 km)
@@ -56,4 +59,5 @@
 <script src="EventHandler.js"></script>
 <script src="canvas.js"></script>
 </body>
+
 </html>

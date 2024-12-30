@@ -1,3 +1,7 @@
+/**
+ * Event handlers for mouse and touch events.
+ */
+
 let isDragging = false;
 let dragStartX, dragStartY;
 let initialPinchDistance = null;
@@ -75,15 +79,18 @@ function handleMouseUp() {
  * Handle touch start event
  */
 function handleTouchStart(e) {
+    // Distinct behavior for single and double touch, important for pinch zoom on mobile.
     if (e.touches.length === 1) {
         // Single touch: drag start
         isDragging = true;
         const touch = e.touches[0];
         dragStartX = touch.clientX;
         dragStartY = touch.clientY;
+
     } else if (e.touches.length === 2) {
         // Two touches: pinch zoom start
-        isDragging = false; // Disable dragging during pinch zoom
+        // Disable dragging during pinch zoom
+        isDragging = false; 
         initialPinchDistance = getPinchDistance(e.touches);
         pinchStartScale = scale;
     }
@@ -121,7 +128,9 @@ function handleTouchMove(e) {
  */
 function handleTouchEnd() {
     isDragging = false;
-    initialPinchDistance = null; // Reset pinch zoom state
+
+    // Reset pinch zoom state
+    initialPinchDistance = null; 
 }
 
 /**
@@ -129,7 +138,9 @@ function handleTouchEnd() {
  */
 function handleZoom(e) {
     e.preventDefault();
-    const zoomFactor = 1.05; // Smaller value for finer zoom increments
+    
+     // Smaller value for finer zoom increments
+    const zoomFactor = 1.05;
     const zoom = e.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
 
     // Apply zoom limits

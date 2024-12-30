@@ -1,3 +1,7 @@
+/**
+ * This file contains the code for the canvas and the visualization.
+ */
+
 const canvas = document.getElementById("visualization-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -19,19 +23,28 @@ const maxFontSize = 30;
 const minLineThickness = 10;
 const maxLineThickness = 10;
 
+// Needed for changing fonts and background colors based on dark mode.
 let darkMode = false;
 
 // Fetch saved locations from local storage
 const savedLocations = JSON.parse(localStorage.getItem("locations")) || [];
-// Fetch saved locations from session storage
+
+// Fetch user coordinates from session storage
 const userCoordinates = JSON.parse(sessionStorage.getItem("userCoordinates"));
 
-
+/**
+ * Draw a node on the canvas, with the given coordinates, label/name, and color.
+ * @param {*} x 
+ * @param {*} y 
+ * @param {*} label 
+ * @param {*} color 
+ */
 function drawNode(x, y, label, color = 'red') {
 
     // Calculate dynamic node size within min and max bounds
     const nodeSize = Math.min(Math.max(10 / scale, minNodeSize), maxNodeSize);
 
+    // Circle
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(x, y, nodeSize, 0, Math.PI * 2);
@@ -40,11 +53,15 @@ function drawNode(x, y, label, color = 'red') {
     // Calculate dynamic font size within min and max bounds
     let fontSize = Math.min(Math.max(12 / scale, minFontSize), maxFontSize);
 
-    ctx.fillStyle = getFontColor(); // Font color
+    ctx.fillStyle = getFontColor();
     ctx.font = `${fontSize}px Arial`;
     ctx.fillText(label, x + nodeSize + 5, y + 5);
 }
 
+/**
+ * Get the font color based on dark mode.
+ * @returns 
+ */
 function getFontColor() {
     if (darkMode) {
         return "white";
@@ -52,6 +69,12 @@ function getFontColor() {
     return "black";
 }
 
+/**
+ * Get the line color based on the distance.
+ * Rules written in the Legend.
+ * @param {*} distance 
+ * @returns 
+ */
 function getLineColor(distance) {
     let color;
 
@@ -68,6 +91,15 @@ function getLineColor(distance) {
     return color;
 }
 
+/**
+ * Draw a line between two points on the canvas.
+ * Gets line color based on distance.
+ * @param {*} x1 
+ * @param {*} y1 
+ * @param {*} x2 
+ * @param {*} y2 
+ * @param {*} distance 
+ */
 function drawLine(x1, y1, x2, y2, distance) {
     let color = getLineColor(distance), //
         thickness = getLineThickness();
@@ -84,6 +116,13 @@ function getLineThickness() {
     return Math.min(Math.max(1 / scale, minLineThickness), maxLineThickness);
 }
 
+/**
+ * Calculate where the coordinates should be placed on the canvas.
+ * 
+ * @param {*} latitude 
+ * @param {*} longitude 
+ * @returns 
+ */
 function calculateCanvasPosition(latitude, longitude) {
     const deltaLat = latitude - userCoordinates.latitude;
     const deltaLon = longitude - userCoordinates.longitude;
@@ -91,12 +130,21 @@ function calculateCanvasPosition(latitude, longitude) {
     const x = offsetX + deltaLon * 200 * scale; // Longitude affects horizontal placement
     const y = offsetY - deltaLat * 200 * scale; // Latitude affects vertical placement (negative is up)
 
-    return {x, y};
+    return { x, y };
 }
 
+/**
+ * Main function to draw the visualization on the canvas.
+ * Draws user node, saved locations, and lines between them.
+ * Handles zoom and pan.
+ * Handles dark mode.
+ * 
+ * @returns 
+ */
 function drawVisualization() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // N, S, E, W on the canvas
     drawCardinalIndicators();
 
     if (!userCoordinates) {
@@ -119,6 +167,9 @@ function drawVisualization() {
     drawNode(userPosition.x, userPosition.y, "You", "blue");
 }
 
+/**
+ * Draw the cardinal indicators on the canvas.
+ */
 function drawCardinalIndicators() {
     ctx.fillStyle = getFontColor();
     ctx.font = '16px Arial';
