@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description"
-          content="Plan your travels efficiently by saving locations, viewing weather, and calculating
-          travel distances and times."/>
+    <meta
+            name="description"
+            content="Plan your travels efficiently by saving locations, viewing weather, and calculating
+          travel distances and times."
+    />
     <meta name="author" content="Srijan"/>
     <title>Travel Planner</title>
     <!-- Bootstrap CSS -->
@@ -38,7 +40,9 @@
 
     <!-- Add Location Section -->
     <section id="add-location-div" class="location-input-container">
+
         <label for="location-name" class="sr-only">Travel Location:</label>
+
         <input
                 type="text"
                 id="location-name"
@@ -46,8 +50,7 @@
                 placeholder="Enter location name (e.g., Berlin)"
         />
 
-        <button id="add-location-button"
-                class="add-location-button">
+        <button id="add-location-button" class="add-location-button">
             <i class="bi bi-plus-lg"></i>
             Add Location
         </button>
@@ -55,14 +58,18 @@
 
     <!-- Saved Locations Section -->
     <section id="saved-locations" class="saved-locations-container">
+
         <h3 class="visually-hidden">Saved Locations:</h3>
+
         <div class="map-div">
             <button id="open-canvas-btn">
                 <i class="bi bi-compass"></i>
                 Visualize Locations
             </button>
         </div>
+
         <ul id="locations-list" class="locations-list"></ul>
+
     </section>
 </div>
 

@@ -1,17 +1,21 @@
-// Import other modules (if using ES6 modules)
-// Otherwise, ensure all scripts are loaded in the correct order in HTML
-// better for just opening the browser by clicking the index.html file instead
-// of starting a server
+// Import other modules (if using ES6 modules) but not needed for this project.
+// Ensure all scripts are loaded in the correct order in HTML.
+// This option is better for just opening the browser by clicking the index.html file instead
+// of starting a server.
 $(document).ready(() => {
-    initializeApp(); // Initialize the application
+    // Initialize the application when the document is ready.
+    initializeApp();
 });
 
 /**
  * Initialize the application
  */
 function initializeApp() {
-    fetchUserLocationAndWeather(); // Fetch current location weather
-    displaySavedLocations(); // Load saved locations
+    // Fetch users current location and weather
+    fetchUserLocationAndWeather();
+
+    // Display the saved locations (saved by user, found in local storage)
+    displaySavedLocations();
 
     // Initialize event listeners
     initializeLocationInputEvents();
@@ -22,19 +26,20 @@ function initializeApp() {
  * Initialize event listeners for location input
  */
 function initializeLocationInputEvents() {
-    $('#add-location-button').on('click', handleAddLocationButtonClick);
-    $('#location-name').on('keydown', handleLocationNameKeydown);
+    $("#add-location-button").on("click", handleAddLocationButtonClick);
+    $("#location-name").on("keydown", handleLocationNameKeydown);
 }
 
 /**
- * Initialize event listener for opening the canvas
+ * Initialize event listener for opening the canvas.
  */
 function initializeCanvasButtonEvent() {
-    $('#open-canvas-btn').on('click', handleOpenCanvasButtonClick);
+    $("#open-canvas-btn").on("click", handleOpenCanvasButtonClick);
 }
 
 /**
  * Handle click event for the "Add Location" button
+ * Add the location to the list of saved locations.
  */
 function handleAddLocationButtonClick() {
     addLocation().catch((error) => {
@@ -44,9 +49,10 @@ function handleAddLocationButtonClick() {
 
 /**
  * Handle keydown event for the location name input field.
+ * If the user presses Enter, add the location.
  */
 function handleLocationNameKeydown(e) {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
         e.preventDefault();
         addLocation().catch((error) => {
             console.error("Error adding location:", error);
@@ -55,8 +61,9 @@ function handleLocationNameKeydown(e) {
 }
 
 /**
- * Handle click event for the "Open Canvas" button
+ * Handle click event for the "Open Canvas" button.
+ * Opens the location visualization in a new tab.
  */
 function handleOpenCanvasButtonClick() {
-    window.open('LocationVisualization/visualization.html', '_blank');
+    window.open("LocationVisualization/visualization.html", "_blank");
 }
