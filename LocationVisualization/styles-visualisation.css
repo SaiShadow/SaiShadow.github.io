@@ -104,6 +104,11 @@ body.dark-mode #visualization-canvas {
     border-color: #444;
 }
 
+body.dark-mode .canvas-container {
+    background-color: #121212;
+    border-color: #121212;
+}
+
 body.dark-mode #dark-mode-button {
     background-color: #007bff;
     color: white;
@@ -111,12 +116,6 @@ body.dark-mode #dark-mode-button {
 
 body.dark-mode #dark-mode-button:hover {
     background-color: #0056b3;
-}
-
-/* Accessibility Enhancements */
-canvas:focus-visible {
-    outline: 0.125rem solid #007bff; /* ~2px */
-    outline-offset: 0.25rem; /* ~4px */
 }
 
 /* Legend Section */
@@ -165,7 +164,6 @@ canvas:focus-visible {
     width: 100%; /* Ensure the container takes the full width */
     height: 80vh; /* Occupies 80% of the viewport height */
     margin: 0 auto; /* Center the canvas horizontally */
-    background-color: #f9f9f9;
 }
 
 #visualization-canvas {
@@ -213,49 +211,65 @@ canvas:active {
 /* Responsive Design for Small Screens (Up to 768px) */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.5rem; /* Smaller heading size */
+        font-size: 1.5rem;
     }
 
     #visualization-canvas {
-        height: 65vh; /* Further reduce canvas height */
+        height: 65vh;
     }
 
     .container {
-        padding: 0.5rem; /* Reduce container padding further */
+        padding: 0.5rem;
+    }
+
+    .controls-section {
+        gap: 0.75rem;
+    }
+
+    .button {
+        padding: 0.5rem 0.75rem; /* Reduce padding for smaller buttons */
+        font-size: 0.875rem; /* Slightly smaller font size (~14px) */
+        width: 100%; /* Make buttons stretch full width */
+        text-align: center; /* Center align the text */
     }
 
     .legend {
-        font-size: 0.7rem; /* Smaller legend font size */
-        gap: 0.5rem; /* Reduce spacing between legend items */
+        font-size: 0.7rem;
+        gap: 0.5rem;
+        flex-direction: column; /* Stack legend items vertically */
+        align-items: flex-start; /* Align items to the left */
     }
 
     .legend-box {
-        width: 0.75rem; /* ~12px */
-        height: 0.75rem; /* ~12px */
+        width: 0.75rem;
+        height: 0.75rem;
     }
 }
 
 /* Responsive Design for Extra Small Screens (Up to 480px) */
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.2rem; /* Make heading smaller */
+        font-size: 1.2rem;
     }
 
     #visualization-canvas {
-        height: 60vh; /* Further reduce canvas height */
+        height: 60vh;
     }
 
     .container {
-        padding: 0.5rem; /* Compact padding for small screens */
+        padding: 0.5rem;
     }
 
     .legend {
-        font-size: 0.6rem; /* Further reduce legend font size */
-        gap: 0.25rem; /* Minimal spacing between legend items */
+        font-size: 0.6rem;
+        gap: 0.25rem;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent text wrapping */
+        padding-bottom: 0.5rem;
     }
 
     .legend-box {
-        width: 0.625rem; /* ~10px */
-        height: 0.625rem; /* ~10px */
+        width: 0.75rem; /* Larger for tap targets */
+        height: 0.75rem;
     }
 }
