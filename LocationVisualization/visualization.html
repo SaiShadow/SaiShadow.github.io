@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Location Visualization</title>
-  <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-  />
-  <link rel="stylesheet" href="../TravelPlanner/styles.css">
-  <link rel="stylesheet" href="styles-visualisation.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Visualize different travel locations and their distances with interactive features like dark mode,
+          reset view, and zoom functionality.">
+    <meta name="author" content="Srijan">
+    <title>Location Visualization</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../TravelPlanner/styles.css">
+    <link rel="stylesheet" href="styles-visualisation.css">
 </head>
 <body>
 <div class="container">
-  <h1>Location Visualization</h1>
-  <!-- Add Dark Mode and Reset Buttons -->
-  <button id="dark-mode-button">Toggle Dark Mode</button>
-  <button id="reset-button">Reset View</button>
+    <header class="title-header">
+        <h1>Location Visualization</h1>
+    </header>
 
-  <!-- Single-line legend -->
-  <div class="legend">
-    <span class="legend-box" id="short-distance"></span> Short Distance (< 50 km)
-    <span class="legend-box" id="medium-distance"></span> Medium Distance (50–200 km)
-    <span class="legend-box" id="long-distance"></span> Long Distance (200–1000 km)
-    <span class="legend-box" id="ultra-long-distance"></span> Ultra Long Distance (> 1000 km)
-  </div>
+    <!-- Controls Section -->
+    <section class="controls-section">
+        <button id="reset-button" class='button'>
+            <i class="bi bi-arrow-clockwise"></i>
+            Reset View
+        </button>
+        <button id="dark-mode-button" class='button'>
+            <i class="bi bi-moon-stars"></i>
+            Dark Mode
+        </button>
+    </section>
 
-  <!-- Canvas-->
-  <canvas id="visualization-canvas"></canvas>
+    <!-- Legend Section -->
+    <section class="legend">
+        <p>
+            <span class="legend-box" id="short-distance"></span> Local (< 50 km)
+            <span class="legend-box" id="medium-distance"></span> Regional (50–200 km)
+            <span class="legend-box" id="long-distance"></span> Long Haul (200–1000 km)
+            <span class="legend-box" id="ultra-long-distance"></span> Global (> 1000 km)
+        </p>
+    </section>
+
+    <!-- Canvas -->
+    <section class="canvas-container">
+        <canvas id="visualization-canvas" tabindex="0" aria-label="Visualization Canvas"></canvas>
+    </section>
 </div>
+
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../TravelPlanner/distance.js"></script>
 <script src="draw.js"></script>

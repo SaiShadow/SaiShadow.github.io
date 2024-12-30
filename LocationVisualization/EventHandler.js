@@ -3,6 +3,9 @@ let dragStartX, dragStartY;
 let initialPinchDistance = null;
 let pinchStartScale = null;
 
+const maxZoomOutScale = 0.01; // Allow much more zoom-out (0.1 for 10%)
+const maxZoomInScale = 20; // Allow much more zoom-in (20x zoom)
+
 /**
  * Initialize mouse events for dragging
  */
@@ -106,8 +109,8 @@ function handleTouchMove(e) {
         const pinchDistance = getPinchDistance(e.touches);
         const zoom = pinchDistance / initialPinchDistance;
 
-        scale = Math.min(Math.max(pinchStartScale * zoom, 0.01), // Minimum zoom level
-            20 // Maximum zoom level
+        scale = Math.min(Math.max(pinchStartScale * zoom, maxZoomOutScale), // Minimum zoom level
+            maxZoomInScale // Maximum zoom level
         );
         drawVisualization();
     }
@@ -128,9 +131,6 @@ function handleZoom(e) {
     e.preventDefault();
     const zoomFactor = 1.05; // Smaller value for finer zoom increments
     const zoom = e.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
-
-    const maxZoomOutScale = 0.01; // Allow much more zoom-out (0.1 for 10%)
-    const maxZoomInScale = 20; // Allow much more zoom-in (20x zoom)
 
     // Apply zoom limits
     if (scale * zoom < maxZoomOutScale || scale * zoom > maxZoomInScale) {

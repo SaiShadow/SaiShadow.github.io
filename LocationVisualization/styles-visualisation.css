@@ -12,85 +12,44 @@ body {
 }
 
 h1 {
-    margin-top: 20px;
+    margin-top: 1.25rem; /* ~20px */
     font-size: 2rem;
     color: #333;
     text-align: center;
 }
 
-/* Canvas Container */
-#visualization-canvas {
-    width: 100%;
-    height: 80vh;
-    border: 2px solid #ddd;
-    display: block;
-    margin: 20px auto;
-    background-color: #fff;
-    cursor: grab; /* Visual indicator for draggable canvas */
+.title-header {
+    margin-bottom: 1.5rem; /* ~24px */
 }
 
-#visualization-canvas:active {
-    cursor: grabbing;
+.container {
+    margin-bottom: 1.5rem; /* ~24px */
 }
 
-/* Hover Effects for Elements */
-canvas:hover {
-    border-color: #007bff;
-    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
+.controls-section {
+    display: flex; /* Makes the section a flex container */
+    justify-content: center; /* Centers the content horizontally */
+    gap: 0.5rem; /* Adds spacing between child elements (equivalent to gap-2) */
+    margin-bottom: 1rem; /* ~16px */
 }
 
-/* Add Compass Directions Styling */
-.compass {
-    position: absolute;
-    color: #555;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.compass.north {
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.compass.south {
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.compass.east {
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.compass.west {
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-}
-
-/* Transitions for Smoothness */
-#visualization-canvas {
-    transition: transform 0.2s ease-in-out;
-}
-
-canvas:active {
-    transition: none; /* Disable transition while dragging */
-}
-
-#dark-mode-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #444;
-    color: white;
+/* Shared Button Styles */
+.button {
+    padding: 0.625rem 0.9375rem; /* ~10px 15px */
+    font-size: 1rem; /* ~16px */
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem; /* ~8px */
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* ~0px 4px 6px */
     transition: all 0.3s ease;
     font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Dark Mode Button */
+#dark-mode-button {
+    background-color: #444;
+    color: white;
 }
 
 #dark-mode-button:hover {
@@ -98,22 +57,25 @@ canvas:active {
     transform: scale(1.05);
 }
 
+#dark-mode-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
+}
+
+/* Reset View Button */
 #reset-button {
-    padding: 10px 15px;
-    font-size: 16px;
     background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    font-family: 'Arial', sans-serif;
 }
 
 #reset-button:hover {
     background-color: #0056b3;
     transform: scale(1.05);
+}
+
+#reset-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
 }
 
 /* Adding Dark Mode Support */
@@ -128,19 +90,23 @@ body.dark-mode h1 {
 
 /* Legend text in dark mode */
 body.dark-mode .legend {
-    /*background: #2c2c2c;*/
     border-color: #444;
     color: white;
 }
 
 /* Node names in dark mode */
 body.dark-mode canvas {
-    color: white; /* Ensure canvas content respects the dark mode */
+    color: white;
 }
 
 body.dark-mode #visualization-canvas {
     background-color: #2c2c2c;
     border-color: #444;
+}
+
+body.dark-mode .canvas-container {
+    background-color: #121212;
+    border-color: #121212;
 }
 
 body.dark-mode #dark-mode-button {
@@ -152,35 +118,30 @@ body.dark-mode #dark-mode-button:hover {
     background-color: #0056b3;
 }
 
-/* Accessibility Enhancements */
-canvas:focus-visible {
-    outline: 2px solid #007bff;
-    outline-offset: 4px;
-}
-
-
-/* Single-line Legend */
+/* Legend Section */
 .legend {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    margin-top: 1.5rem; /* ~24px */
+    font-size: 0.8rem; /* ~12.8px */
+    text-align: center; /* Center-align text */
+    display: flex; /* Flexbox for aligning items */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 1rem; /* Space between legend items (~16px) */
 }
 
+/* Legend Box Styles */
 .legend-box {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-    margin-left: 20px;
-    border-radius: 4px;
-    vertical-align: middle;
+    display: inline-block; /* Allows the box to align next to text */
+    width: 0.9375rem; /* ~15px */
+    height: 0.9375rem; /* ~15px */
+    margin-right: 0.2rem; /* ~3.2px */
+    margin-left: 1rem; /* ~16px */
+    border-radius: 0.25rem; /* ~4px */
+    vertical-align: middle; /* Align with label text */
 }
 
+/* Legend Box Colors */
 #short-distance {
     background-color: green;
 }
@@ -197,50 +158,118 @@ canvas:focus-visible {
     background-color: purple;
 }
 
-/* Responsive Design */
+/* Canvas Container */
+.canvas-container {
+    position: relative; /* Allows absolute positioning for child elements (e.g., overlays, compass directions) */
+    width: 100%; /* Ensure the container takes the full width */
+    height: 80vh; /* Occupies 80% of the viewport height */
+    margin: 0 auto; /* Center the canvas horizontally */
+}
+
+#visualization-canvas {
+    width: 100%;
+    height: 80vh;
+    border: 0.125rem solid #ddd; /* ~2px */
+    display: block;
+    margin: 0 auto;
+    background-color: #fff;
+    cursor: grab; /* Visual indicator for draggable canvas */
+    transition: transform 0.2s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#visualization-canvas:active {
+    cursor: grabbing;
+    transform: scale(1.005); /* Slightly scale up the canvas for feedback */
+}
+
+/* Hover Effects for Elements */
+canvas:hover {
+    border-color: #007bff;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 123, 255, 0.2); /* ~0px 4px 10px */
+}
+
+canvas:active {
+    transition: none; /* Disable transition while dragging */
+}
+
+/* Responsive Design for Tablets and Larger Screens (Up to 1024px) */
 @media (max-width: 1024px) {
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Slightly smaller heading size */
     }
 
     #visualization-canvas {
-        height: 70vh;
-        width: 95%;
+        height: 70vh; /* Reduce canvas height */
+        width: 95%; /* Slightly shrink the canvas width */
+    }
+
+    .container {
+        padding: 1rem; /* Reduce container padding */
     }
 }
 
+/* Responsive Design for Small Screens (Up to 768px) */
 @media (max-width: 768px) {
     h1 {
         font-size: 1.5rem;
     }
 
     #visualization-canvas {
-        height: 70vh;
+        height: 65vh;
     }
 
     .container {
-        padding: 10px;
+        padding: 0.5rem;
+    }
+
+    .controls-section {
+        gap: 0.75rem;
+    }
+
+    .button {
+        padding: 0.5rem 0.75rem; /* Reduce padding for smaller buttons */
+        font-size: 0.875rem; /* Slightly smaller font size (~14px) */
+        width: 100%; /* Make buttons stretch full width */
+        text-align: center; /* Center align the text */
     }
 
     .legend {
-        font-size: 12px;
+        font-size: 0.7rem;
+        gap: 0.5rem;
+        flex-direction: column; /* Stack legend items vertically */
+        align-items: flex-start; /* Align items to the left */
     }
 
     .legend-box {
-        width: 12px;
-        height: 12px;
-        /*margin-right: 1px;*/
-        margin-left: 45px;
+        width: 0.75rem;
+        height: 0.75rem;
     }
 }
 
+/* Responsive Design for Extra Small Screens (Up to 480px) */
 @media (max-width: 480px) {
     h1 {
         font-size: 1.2rem;
     }
 
     #visualization-canvas {
-        height: 50vh;
+        height: 60vh;
     }
 
+    .container {
+        padding: 0.5rem;
+    }
+
+    .legend {
+        font-size: 0.6rem;
+        gap: 0.25rem;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent text wrapping */
+        padding-bottom: 0.5rem;
+    }
+
+    .legend-box {
+        width: 0.75rem; /* Larger for tap targets */
+        height: 0.75rem;
+    }
 }

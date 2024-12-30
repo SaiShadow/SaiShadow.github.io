@@ -5,16 +5,16 @@ function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, tra
     return `
         <div class="weather-info-location">
             <!-- Left Section: Basic Info -->
-            <div class="location-details">
+            <section class="location-details">
                 <h5 class="location-name">
                     <span>${name || "Unknown Location"}</span>
                     <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${weather[0].description}" class="weather-icon" />
                 </h5>
                 <p class="distance text-primary">${distance ? `Distance: ${distance} km` : ''}</p>
-            </div>
+            </section>
 
             <!-- Right Section: Travel Times -->
-            <div class="travel-times">
+            <section class="travel-times">
                 <p><strong>Travel Times:</strong></p>
                 <ul class="travel-time-list">
                     ${travelTimes
@@ -23,10 +23,13 @@ function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, tra
         )
         .join('')}
                 </ul>
-            </div>
+            </section>
 
-            <!-- Delete Button -->
-            <button class="btn btn-danger btn-sm delete-btn" onclick="deleteLocation(${index})">Delete</button>
+            <!-- Delete Button -->            
+            <button class="btn btn-danger btn-sm delete-btn" onclick="deleteLocation(${index})">
+                Delete
+                <i class="bi bi-trash"></i>
+            </button>
         </div>
     `;
 }
