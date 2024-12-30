@@ -12,25 +12,25 @@ body {
 }
 
 h1 {
-    margin-top: 20px;
+    margin-top: 1.25rem; /* ~20px */
     font-size: 2rem;
     color: #333;
     text-align: center;
 }
 
 .title-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* ~24px */
 }
 
 .container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* ~24px */
 }
 
 .controls-section {
     display: flex; /* Makes the section a flex container */
     justify-content: center; /* Centers the content horizontally */
     gap: 0.5rem; /* Adds spacing between child elements (equivalent to gap-2) */
-    margin-bottom: 1rem; /* Adds bottom margin (equivalent to mb-3) */
+    margin-bottom: 1rem; /* ~16px */
 }
 
 /* Shared Button Styles */
@@ -38,9 +38,9 @@ h1 {
     padding: 0.625rem 0.9375rem; /* ~10px 15px */
     font-size: 1rem; /* ~16px */
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem; /* ~8px */
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* ~0px 4px 6px */
     transition: all 0.3s ease;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -59,7 +59,7 @@ h1 {
 
 #dark-mode-button:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
 }
 
 /* Reset View Button */
@@ -75,7 +75,7 @@ h1 {
 
 #reset-button:active {
     transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
 }
 
 /* Adding Dark Mode Support */
@@ -90,14 +90,13 @@ body.dark-mode h1 {
 
 /* Legend text in dark mode */
 body.dark-mode .legend {
-    /*background: #2c2c2c;*/
     border-color: #444;
     color: white;
 }
 
 /* Node names in dark mode */
 body.dark-mode canvas {
-    color: white; /* Ensure canvas content respects the dark mode */
+    color: white;
 }
 
 body.dark-mode #visualization-canvas {
@@ -116,30 +115,30 @@ body.dark-mode #dark-mode-button:hover {
 
 /* Accessibility Enhancements */
 canvas:focus-visible {
-    outline: 2px solid #007bff;
-    outline-offset: 4px;
+    outline: 0.125rem solid #007bff; /* ~2px */
+    outline-offset: 0.25rem; /* ~4px */
 }
 
 /* Legend Section */
 .legend {
-    margin-top: 1.5rem; /* Space above the legend */
-    font-size: 0.8rem; /* Text size for the legend labels */
+    margin-top: 1.5rem; /* ~24px */
+    font-size: 0.8rem; /* ~12.8px */
     text-align: center; /* Center-align text */
     display: flex; /* Flexbox for aligning items */
     flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     justify-content: center; /* Center items horizontally */
     align-items: center; /* Center items vertically */
-    gap: 1rem; /* Space between legend items */
+    gap: 1rem; /* Space between legend items (~16px) */
 }
 
 /* Legend Box Styles */
 .legend-box {
     display: inline-block; /* Allows the box to align next to text */
-    width: 15px; /* Fixed width for legend boxes */
-    height: 15px; /* Fixed height for legend boxes */
-    margin-right: 0.2rem; /* Space between box and label text */
-    margin-left: 1rem;
-    border-radius: 4px; /* Rounded corners */
+    width: 0.9375rem; /* ~15px */
+    height: 0.9375rem; /* ~15px */
+    margin-right: 0.2rem; /* ~3.2px */
+    margin-left: 1rem; /* ~16px */
+    border-radius: 0.25rem; /* ~4px */
     vertical-align: middle; /* Align with label text */
 }
 
@@ -172,7 +171,7 @@ canvas:focus-visible {
 #visualization-canvas {
     width: 100%;
     height: 80vh;
-    border: 2px solid #ddd;
+    border: 0.125rem solid #ddd; /* ~2px */
     display: block;
     margin: 0 auto;
     background-color: #fff;
@@ -188,60 +187,75 @@ canvas:focus-visible {
 /* Hover Effects for Elements */
 canvas:hover {
     border-color: #007bff;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 123, 255, 0.2); /* ~0px 4px 10px */
 }
 
 canvas:active {
     transition: none; /* Disable transition while dragging */
 }
 
-/* Responsive Design */
+/* Responsive Design for Tablets and Larger Screens (Up to 1024px) */
 @media (max-width: 1024px) {
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Slightly smaller heading size */
     }
 
     #visualization-canvas {
-        height: 70vh;
-        width: 95%;
-    }
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    #visualization-canvas {
-        height: 70vh;
+        height: 70vh; /* Reduce canvas height */
+        width: 95%; /* Slightly shrink the canvas width */
     }
 
     .container {
-        padding: 10px;
-    }
-
-    .legend {
-        font-size: 0.55rem; /* Slightly smaller font size for labels */
-        gap: 0.5rem; /* Reduce spacing between items */
-    }
-
-    .legend-box {
-        width: 12px; /* Smaller box for better fit */
-        height: 12px; /* Smaller box for better fit */
+        padding: 1rem; /* Reduce container padding */
     }
 }
 
-@media (max-width: 480px) {
+/* Responsive Design for Small Screens (Up to 768px) */
+@media (max-width: 768px) {
     h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem; /* Smaller heading size */
     }
 
     #visualization-canvas {
-        height: 60vh;
+        height: 65vh; /* Further reduce canvas height */
+    }
+
+    .container {
+        padding: 0.5rem; /* Reduce container padding further */
     }
 
     .legend {
-        font-size: 0.5rem; /* Slightly smaller font size for labels */
-        gap: 0; /* Reduce spacing between items */
+        font-size: 0.7rem; /* Smaller legend font size */
+        gap: 0.5rem; /* Reduce spacing between legend items */
+    }
+
+    .legend-box {
+        width: 0.75rem; /* ~12px */
+        height: 0.75rem; /* ~12px */
+    }
+}
+
+/* Responsive Design for Extra Small Screens (Up to 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem; /* Make heading smaller */
+    }
+
+    #visualization-canvas {
+        height: 60vh; /* Further reduce canvas height */
+    }
+
+    .container {
+        padding: 0.5rem; /* Compact padding for small screens */
+    }
+
+    .legend {
+        font-size: 0.6rem; /* Further reduce legend font size */
+        gap: 0.25rem; /* Minimal spacing between legend items */
+    }
+
+    .legend-box {
+        width: 0.625rem; /* ~10px */
+        height: 0.625rem; /* ~10px */
     }
 }
