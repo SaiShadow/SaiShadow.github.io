@@ -138,6 +138,12 @@ body {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
 }
 
+/* Focus Outline for Add Location Button */
+.add-location-button:focus-visible {
+    outline: 0.125rem solid #28a745; /* Green focus outline for add location button */
+    outline-offset: 0.125rem;
+}
+
 /* Saved Locations Section */
 .saved-locations-container {
     margin-top: 1.25rem; /* ~20px */
@@ -293,6 +299,12 @@ body {
 .delete-btn:active {
     transform: scale(0.95);
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
+}
+
+/* Focus Outline for Delete Button */
+.delete-btn:focus-visible {
+    outline: 0.125rem solid #dc3545; /* Red focus outline for delete button */
+    outline-offset: 0.125rem; /* Space between outline and button */
 }
 
 @media (max-width: 600px) {

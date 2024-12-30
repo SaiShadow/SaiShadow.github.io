@@ -46,6 +46,12 @@ h1 {
     text-align: center;
 }
 
+/* Focus Outline for Buttons */
+.button:focus-visible {
+    outline: 0.125rem solid #007bff; /* Blue focus outline */
+    outline-offset: 0.125rem; /* Space between outline and button */
+}
+
 /* Dark Mode Button */
 #dark-mode-button {
     background-color: #444;
@@ -62,6 +68,11 @@ h1 {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
 }
 
+#dark-mode-button:focus-visible {
+    outline: 0.125rem solid #444; /* Gray focus outline for dark mode button */
+    outline-offset: 0.125rem;
+}
+
 /* Reset View Button */
 #reset-button {
     background-color: #007bff;
@@ -76,6 +87,11 @@ h1 {
 #reset-button:active {
     transform: scale(0.95);
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
+}
+
+#reset-button:focus-visible {
+    outline: 0.125rem solid #0056b3; /* Blue focus outline for reset button */
+    outline-offset: 0.125rem;
 }
 
 /* Adding Dark Mode Support */
