@@ -1,4 +1,14 @@
-// Generate HTML for saved locations
+
+/**
+ * Generate inner HTML dynamically for displaying the saved locations.
+ * @param {*} data 
+ * @param {*} latitude 
+ * @param {*} longitude 
+ * @param {*} distance 
+ * @param {*} travelTimes 
+ * @param {*} index 
+ * @returns inner html string for each saved location.
+ */
 function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, travelTimes, index) {
     const { name, weather } = data; // Extract weather details
     const iconCode = weather[0].icon; // Weather icon code
@@ -18,10 +28,10 @@ function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, tra
                 <p><strong>Travel Times:</strong></p>
                 <ul class="travel-time-list">
                     ${travelTimes
-        .map(
-            (mode) => `<li><i class="${mode.icon}"></i> ${mode.mode}: ${mode.time}</li>`
-        )
-        .join('')}
+            .map(
+                (mode) => `<li><i class="${mode.icon}"></i> ${mode.mode}: ${mode.time}</li>`
+            )
+            .join('')}
                 </ul>
             </section>
 
@@ -34,7 +44,13 @@ function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, tra
     `;
 }
 
-// Generate HTML for user's current location weather
+/**
+ * Generate inner HTML dynamically for displaying the user's current location weather card.
+ * @param {*} data 
+ * @param {*} latitude 
+ * @param {*} longitude 
+ * @returns inner html string for the user's current location weather card.
+ */
 function generateWeatherHTMLUser(data, latitude, longitude) {
     const { name, weather, main } = data; // Extract weather details
     const iconCode = weather[0].icon; // Weather icon code
