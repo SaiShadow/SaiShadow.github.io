@@ -90,7 +90,7 @@ function handleTouchStart(e) {
     } else if (e.touches.length === 2) {
         // Two touches: pinch zoom start
         // Disable dragging during pinch zoom
-        isDragging = false; 
+        isDragging = false;
         initialPinchDistance = getPinchDistance(e.touches);
         pinchStartScale = scale;
     }
@@ -130,7 +130,7 @@ function handleTouchEnd() {
     isDragging = false;
 
     // Reset pinch zoom state
-    initialPinchDistance = null; 
+    initialPinchDistance = null;
 }
 
 /**
@@ -138,8 +138,8 @@ function handleTouchEnd() {
  */
 function handleZoom(e) {
     e.preventDefault();
-    
-     // Smaller value for finer zoom increments
+
+    // Smaller value for finer zoom increments
     const zoomFactor = 1.05;
     const zoom = e.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
 

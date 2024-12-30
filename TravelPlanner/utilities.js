@@ -15,20 +15,20 @@ const twentyMinutes = tenMinutes * 2;
 let userCoordinates = null;
 
 /**
- * Save users current coordinates to session storage. 
+ * Save users current coordinates to session storage.
  * Not local storage, as we don't need it to persist, and also bad for if user is on the move.
- * @param {*} latitude 
- * @param {*} longitude 
+ * @param {*} latitude
+ * @param {*} longitude
  */
 function saveUserCoordinates(latitude, longitude) {
-    userCoordinates = { latitude, longitude };
+    userCoordinates = {latitude, longitude};
     sessionStorage.setItem('userCoordinates', JSON.stringify(userCoordinates));
 }
 
 /**
  * Generate error div with the given message.
- * @param {*} message 
- * @returns 
+ * @param {*} message
+ * @returns
  */
 function getErrorDiv(message) {
     return `<div class="alert alert-danger" role="alert">${message}</div>`;

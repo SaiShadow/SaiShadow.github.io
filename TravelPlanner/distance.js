@@ -1,10 +1,10 @@
 /**
  * Calculate distance between two coordinates using the Haversine formula.
- * @param {int} lat1 
- * @param {int} lon1 
- * @param {int} lat2 
- * @param {int} lon2 
- * @returns 
+ * @param {int} lat1
+ * @param {int} lon1
+ * @param {int} lat2
+ * @param {int} lon2
+ * @returns
  */
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const toRadians = (degrees) => degrees * (Math.PI / 180);
@@ -22,9 +22,9 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 }
 
 /**
- * Display distance between user's location and a given location by returning 
- * the appropriate HTML string. 
- * @param {int, int} location 
+ * Display distance between user's location and a given location by returning
+ * the appropriate HTML string.
+ * @param {int, int} location
  * @returns HTML string
  */
 function displayDistance(location) {
@@ -34,8 +34,8 @@ function displayDistance(location) {
 
 /**
  * Get distance between user's location and a given location.
- * @param {int} latitude 
- * @param {int} longitude 
+ * @param {int} latitude
+ * @param {int} longitude
  * @returns distance in km, rounded to 2 decimal places.
  */
 function getDistance(latitude, longitude) {

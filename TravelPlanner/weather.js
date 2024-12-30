@@ -4,11 +4,11 @@
  */
 
 /**
- * Fetch user's current location and weather data. 
+ * Fetch user's current location and weather data.
  * If location access is denied, an error message is displayed.
  * If location access is granted, the weather data is displayed.
  * If location access is granted, the saved locations are displayed
- * @returns 
+ * @returns
  */
 function fetchUserLocationAndWeather() {
     if (!navigator.geolocation) {
@@ -18,51 +18,49 @@ function fetchUserLocationAndWeather() {
 
     navigator.geolocation.getCurrentPosition(
         async (position) => {
-            const { latitude, longitude } = position.coords;
+        const {latitude, longitude} = position.coords;
 
-            // Save user's coordinates in session storage.
-            saveUserCoordinates(latitude, longitude);
+        // Save user's coordinates in session storage.
+        saveUserCoordinates(latitude, longitude);
 
-            // Fetch and display users weather card.
-            await displayWeatherUser(latitude, longitude, weatherDiv);
+        // Fetch and display users weather card.
+        await displayWeatherUser(latitude, longitude, weatherDiv);
 
-            // Display saved locations again, now that we have the user's location.
-            // Can calculate distance from user's location to saved locations. 
-            // And calculate and display travel times.
-            displaySavedLocations();
+        // Display saved locations again, now that we have the user's location.
+        // Can calculate distance from user's location to saved locations.
+        // And calculate and display travel times.
+        displaySavedLocations();
 
-        },
-        (error) => {
-            console.error("Geolocation error:", error);
-            let errorMessage;
+    }, (error) => {
+        console.error("Geolocation error:", error);
+        let errorMessage;
 
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    errorMessage = "Location access denied by user.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    errorMessage = "Location information is unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    errorMessage = "The request to fetch location timed out.";
-                    break;
-                default:
-                    errorMessage = "An unknown error occurred.";
-            }
-
-            weatherDiv.html(getErrorDiv(errorMessage));
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                errorMessage = "Location access denied by user.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                errorMessage = "Location information is unavailable.";
+                break;
+            case error.TIMEOUT:
+                errorMessage = "The request to fetch location timed out.";
+                break;
+            default:
+                errorMessage = "An unknown error occurred.";
         }
-    );
+
+        weatherDiv.html(getErrorDiv(errorMessage));
+    });
 }
 
 /**
  * Fetch weather data from the cache if it exists.
  * If the data is not in the cache or is expired, fetch it from the API.
  * Generate an inner HTML for the weather card and set it.
- * 
- * @param {*} latitude 
- * @param {*} longitude 
- * @param {*} targetDiv 
+ *
+ * @param {*} latitude
+ * @param {*} longitude
+ * @param {*} targetDiv
  */
 async function displayWeatherUser(latitude, longitude, targetDiv) {
 
@@ -80,9 +78,9 @@ async function displayWeatherUser(latitude, longitude, targetDiv) {
 /**
  * Fetch and display weather data cards for saved locations.
  * Similar to @displayWeatherUser, but for saved locations.
- * @param {*} latitude 
- * @param {*} longitude 
- * @param {*} targetDiv 
+ * @param {*} latitude
+ * @param {*} longitude
+ * @param {*} targetDiv
  */
 async function displaySavedLocationsInfo(latitude, longitude, targetDiv) {
     const data = await getWeatherDataFromCache(latitude, longitude);
@@ -105,9 +103,9 @@ async function displaySavedLocationsInfo(latitude, longitude, targetDiv) {
  * Get weather data using OpenWeatherMap API.
  * It needs the latitude and longitude of the location.
  * Use Geocoding API to get the coordinates of a location.
- * 
- * @param {*} latitude 
- * @param {*} longitude 
+ *
+ * @param {*} latitude
+ * @param {*} longitude
  * @returns weather data from API.
  */
 async function getWeatherData(latitude, longitude) {

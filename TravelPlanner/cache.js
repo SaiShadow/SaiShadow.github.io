@@ -27,14 +27,14 @@ async function getWeatherDataFromCache(latitude, longitude) {
     const data = await getWeatherData(latitude, longitude);
     if (data) {
         // Cache the fresh data
-        sessionStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
+        sessionStorage.setItem(cacheKey, JSON.stringify({data, timestamp: Date.now()}));
     }
     return data;
 }
 
 /**
  * Checks if the cached data is still valid based on the cacheValidityDuration.
- * @param {int} cachedDataTimestamp 
+ * @param {int} cachedDataTimestamp
  * @returns {boolean} true if the data is still valid, false otherwise
  */
 function isDataStillValid(cachedDataTimestamp) {

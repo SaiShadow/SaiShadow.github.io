@@ -9,7 +9,7 @@
  * Add location to the list of saved locations.
  * Gets location from input field, fetches coordinates using OpenWeatherMap Geocoding API,
  * then saves the location to LocalStorage, and displays the updated list of saved locations.
- * @returns 
+ * @returns
  */
 async function addLocation() {
     const locationName = $('#location-name').val().trim();
@@ -29,9 +29,9 @@ async function addLocation() {
 }
 
 /**
- * Fetch coordinates using OpenWeatherMap Geocoding API. Location name can also be short forms. 
+ * Fetch coordinates using OpenWeatherMap Geocoding API. Location name can also be short forms.
  * This functionality was added for user convenience, as searching for location names are better than coordinate-input.
- * 
+ *
  * @param {*} locationName Can also be short forms like "NYC" for New York City, the API will return the first match.
  * @returns an object with the location name, latitude, and longitude.
  */
@@ -46,8 +46,8 @@ async function fetchCoordinates(locationName) {
             return null;
         }
 
-        const { name, lat, lon } = data[0];
-        return { name: name, latitude: lat, longitude: lon };
+        const {name, lat, lon} = data[0];
+        return {name: name, latitude: lat, longitude: lon};
     } catch (error) {
         console.error("Error fetching coordinates:", error);
         alert('Unable to fetch location. Please try again.');
@@ -64,7 +64,7 @@ async function fetchCoordinates(locationName) {
 function saveLocation(name, latitude, longitude) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];
     // Add new location to the beginning of the array
-    savedLocations.unshift({ name, latitude, longitude });
+    savedLocations.unshift({name, latitude, longitude});
     localStorage.setItem('locations', JSON.stringify(savedLocations));
 }
 
@@ -93,8 +93,7 @@ function displaySavedLocations() {
 
     // If there are no saved locations, display a message, don't show "Visualize Locations" button and return.
     if (savedLocations.length === 0) {
-        locationsList.html('<p class="text-muted">No saved locations. ' +
-            'Add a location to get started.</p>');
+        locationsList.html('<p class="text-muted">No saved locations. ' + 'Add a location to get started.</p>');
         turnOffCanvasButtonVisibility();
         return;
     } else {
@@ -157,7 +156,7 @@ function deleteLocation(index) {
 
 /**
  * Delete location from LocalStorage.
- * @param {*} index 
+ * @param {*} index
  */
 function deleteLocationFromStorage(index) {
     const savedLocations = JSON.parse(localStorage.getItem('locations')) || [];

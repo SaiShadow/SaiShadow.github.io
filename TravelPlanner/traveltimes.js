@@ -15,18 +15,18 @@ const walkIcon = "bi bi-person-walking";
 
 // Array of travel modes with their respective speed and icons.
 const travelModes = [//
-    { mode: "Car", icon: carIcon, speed: carSpeed }, //
-    { mode: "Cycle", icon: cycleIcon, speed: cycleSpeed }, //
-    { mode: "Walk", icon: walkIcon, speed: walkingSpeed }, //
+    {mode: "Car", icon: carIcon, speed: carSpeed}, //
+    {mode: "Cycle", icon: cycleIcon, speed: cycleSpeed}, //
+    {mode: "Walk", icon: walkIcon, speed: walkingSpeed}, //
 ];
 
 /**
- * Calculate travel times for different modes of transport. 
- * Display travel times in hours and minutes. 
+ * Calculate travel times for different modes of transport.
+ * Display travel times in hours and minutes.
  * But only display hours if the travel time is more than 1 hour.
  * Only display minutes if the travel time is less than 1 hour.
- * @param {*} distance 
- * @returns 
+ * @param {*} distance
+ * @returns
  */
 function calculateTravelTimes(distance) {
     return travelModes.map((mode) => {//

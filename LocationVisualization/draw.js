@@ -34,10 +34,10 @@ const userCoordinates = JSON.parse(sessionStorage.getItem("userCoordinates"));
 
 /**
  * Draw a node on the canvas, with the given coordinates, label/name, and color.
- * @param {*} x 
- * @param {*} y 
- * @param {*} label 
- * @param {*} color 
+ * @param {*} x
+ * @param {*} y
+ * @param {*} label
+ * @param {*} color
  */
 function drawNode(x, y, label, color = 'red') {
 
@@ -60,7 +60,7 @@ function drawNode(x, y, label, color = 'red') {
 
 /**
  * Get the font color based on dark mode.
- * @returns 
+ * @returns
  */
 function getFontColor() {
     if (darkMode) {
@@ -72,8 +72,8 @@ function getFontColor() {
 /**
  * Get the line color based on the distance.
  * Rules written in the Legend.
- * @param {*} distance 
- * @returns 
+ * @param {*} distance
+ * @returns
  */
 function getLineColor(distance) {
     let color;
@@ -94,11 +94,11 @@ function getLineColor(distance) {
 /**
  * Draw a line between two points on the canvas.
  * Gets line color based on distance.
- * @param {*} x1 
- * @param {*} y1 
- * @param {*} x2 
- * @param {*} y2 
- * @param {*} distance 
+ * @param {*} x1
+ * @param {*} y1
+ * @param {*} x2
+ * @param {*} y2
+ * @param {*} distance
  */
 function drawLine(x1, y1, x2, y2, distance) {
     let color = getLineColor(distance), //
@@ -118,10 +118,10 @@ function getLineThickness() {
 
 /**
  * Calculate where the coordinates should be placed on the canvas.
- * 
- * @param {*} latitude 
- * @param {*} longitude 
- * @returns 
+ *
+ * @param {*} latitude
+ * @param {*} longitude
+ * @returns
  */
 function calculateCanvasPosition(latitude, longitude) {
     const deltaLat = latitude - userCoordinates.latitude;
@@ -130,7 +130,7 @@ function calculateCanvasPosition(latitude, longitude) {
     const x = offsetX + deltaLon * 200 * scale; // Longitude affects horizontal placement
     const y = offsetY - deltaLat * 200 * scale; // Latitude affects vertical placement (negative is up)
 
-    return { x, y };
+    return {x, y};
 }
 
 /**
@@ -138,8 +138,8 @@ function calculateCanvasPosition(latitude, longitude) {
  * Draws user node, saved locations, and lines between them.
  * Handles zoom and pan.
  * Handles dark mode.
- * 
- * @returns 
+ *
+ * @returns
  */
 function drawVisualization() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
