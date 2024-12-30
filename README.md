@@ -5,7 +5,7 @@
 [Travel Planner](https://saishadow.github.io/) \
 https://saishadow.github.io/
 
-Public Github: https://github.com/SaiShadow/SaiShadow.github.io
+Github: https://github.com/SaiShadow/SaiShadow.github.io
 
 ---
 
