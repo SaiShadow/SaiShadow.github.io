@@ -18,6 +18,10 @@ body {
     margin-bottom: 20px;
 }
 
+.title-header {
+    margin-bottom: 1.5rem; /* ~24px */
+}
+
 #open-canvas-btn {
     display: none; /* Hide the button initially */
     background-color: #17a2b8; /* Bootstrap "btn-info" color */
@@ -312,6 +316,10 @@ body {
     .weather-info-location-content {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .weather-info-location:hover {
+        transform: scale(1.05);
     }
 
     .location-details h5 {
