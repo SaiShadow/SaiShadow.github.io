@@ -39,38 +39,6 @@ canvas:hover {
     box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
 }
 
-/* Add Compass Directions Styling */
-.compass {
-    position: absolute;
-    color: #555;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.compass.north {
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.compass.south {
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.compass.east {
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.compass.west {
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-}
-
 /* Transitions for Smoothness */
 #visualization-canvas {
     transition: transform 0.2s ease-in-out;
