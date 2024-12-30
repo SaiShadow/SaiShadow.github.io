@@ -23,61 +23,46 @@
 </head>
 
 <body>
-<div class="container my-4">
+<div class="container">
     <!-- App Header -->
-    <!-- TODO-->
-    <header class="text-center mb-4">
-        <!-- TODO-->
-        <h1 id="app-name" class="mb-3">Travel Planner</h1>
+    <header class="app-header">
+        <h1 id="app-name">Travel Planner</h1>
     </header>
 
     <!-- Weather Section -->
-    <!-- TODO-->
-    <section id="weather" class="text-center mb-4">
-        <!-- TODO-->
-        <div class="loading-spinner spinner-border text-primary" role="status">
+    <section id="weather">
+        <div class="loading-spinner" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </section>
 
     <!-- Add Location Section -->
-    <!-- TODO-->
-    <section id="add-location-div" class="location-input-container mb-4">
-        <!-- TODO: sr-only -->
-        <label for="location-name" class="form-label visually-hidden">Travel Location:</label>
-        <!-- TODO-->
-        <div class="input-group">
-            <!-- TODO class="location-input"-->
-            <input
-                    type="text"
-                    id="location-name"
-                    class="form-control"
-                    placeholder="Enter location name (e.g., Berlin)"
-            />
+    <section id="add-location-div" class="location-input-container">
+        <label for="location-name" class="sr-only">Travel Location:</label>
+        <input
+                type="text"
+                id="location-name"
+                class="location-input"
+                placeholder="Enter location name (e.g., Berlin)"
+        />
 
-            <!-- TODO class name is weird-->
-            <button id="add-location-button"
-                    class="btn btn-success">
-                <i class="bi bi-plus-lg"></i>
-                Add Location
-            </button>
-        </div>
+        <button id="add-location-button"
+                class="add-location-button">
+            <i class="bi bi-plus-lg"></i>
+            Add Location
+        </button>
     </section>
 
     <!-- Saved Locations Section -->
     <section id="saved-locations" class="saved-locations-container">
         <h3 class="visually-hidden">Saved Locations:</h3>
-        <!-- TODO-->
-        <div class="text-center mb-3">
-            <!-- TODO-->
-            <button id="open-canvas-btn"
-                    class="btn btn-primary">
+        <div class="map-div">
+            <button id="open-canvas-btn">
                 <i class="bi bi-compass"></i>
                 Visualize Locations
             </button>
         </div>
-        <!-- TODO-->
-        <ul id="locations-list" class="locations-list list-group"></ul>
+        <ul id="locations-list" class="locations-list"></ul>
     </section>
 </div>
 

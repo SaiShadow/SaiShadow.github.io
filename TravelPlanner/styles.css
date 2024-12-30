@@ -161,21 +161,32 @@ body {
     background-color: #17a2b8; /* Bootstrap "btn-info" color */
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem; /* Adjust font size */
+    border-radius: 0.3125rem; /* ~5px */
+    padding: 0.625rem 1.25rem; /* ~10px 20px */
+    font-size: 1rem; /* ~16px */
     cursor: pointer;
-    margin: 5px;
+    margin: 0.3125rem; /* ~5px */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
 }
 
 #open-canvas-btn:hover {
     background-color: #138496; /* Darker shade for hover effect */
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slight enlarge on hover */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
 }
 
 #open-canvas-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* ~0px 2px 4px */
+    transform: scale(0.95); /* Slight shrink on click */
+    background-color: #117a8b; /* Even darker shade for active state */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* Adjust shadow */
+}
+
+/* Focus state for accessibility */
+#open-canvas-btn:focus-visible {
+    outline: 0.125rem solid #138496; /* Visible focus outline */
+    outline-offset: 0.125rem; /* Space between outline and button */
 }
 
 /* Location List Layout */

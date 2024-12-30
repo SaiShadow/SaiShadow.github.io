@@ -68,7 +68,8 @@ function displaySavedLocations() {
     locationsList.empty();
 
     if (savedLocations.length === 0) {
-        locationsList.html('<p class="text-muted">No saved locations. Add a location to get started.</p>');
+        locationsList.html('<p class="text-muted">No saved locations. ' +
+            'Add a location to get started.</p>');
         turnOffCanvasButtonVisibility();
         return;
     } else {

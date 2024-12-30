@@ -104,9 +104,8 @@ function drawVisualization() {
         return;
     }
 
-    // Draw user location
+    // Get user position on canvas
     const userPosition = calculateCanvasPosition(userCoordinates.latitude, userCoordinates.longitude);
-    drawNode(userPosition.x, userPosition.y, "You", "blue");
 
     // Draw saved locations
     savedLocations.forEach((location) => {
@@ -115,6 +114,9 @@ function drawVisualization() {
         drawLine(userPosition.x, userPosition.y, position.x, position.y, distance); // Line from user to location
         drawNode(position.x, position.y, location.name, "red");
     });
+
+    // Draw user node on top of other lines
+    drawNode(userPosition.x, userPosition.y, "You", "blue");
 }
 
 function drawCardinalIndicators() {
