@@ -10,7 +10,7 @@
  * @returns inner html string for each saved location.
  */
 function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, travelTimes, index) {
-    const { name, weather } = data; // Extract weather details
+    const { name, weather, main } = data; // Extract weather details
     const iconCode = weather[0].icon; // Weather icon code
     return `
         <div class="weather-info-location">
@@ -20,6 +20,7 @@ function generateInfoHTMLSavedLocations(data, latitude, longitude, distance, tra
                     <span>${name || "Unknown Location"}</span>
                     <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${weather[0].description}" class="weather-icon" />
                 </h5>
+                <p class="saved-location-weather-info">${main.temp}°C, ${weather[0].description}</p>
                 <p class="distance text-primary">${distance ? `Distance: ${distance} km` : ''}</p>
             </section>
 
