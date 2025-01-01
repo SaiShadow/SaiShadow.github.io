@@ -1,6 +1,18 @@
 /**
  * This file contains the code for the canvas and the visualization.
  */
+/**
+ * This canvas-based map visualization was part of an earlier implementation before I discovered map APIs like
+ * OpenStreetMap from a friend.
+ *
+ * While OpenStreetMap offers extensive real-world map data and features, this canvas implementation was designed
+ * from scratch to provide a smooth and highly customizable experience.
+ *
+ * Given the significant effort and time invested in implementing the canvas visualization, including features
+ * like panning, zooming, and dynamic rendering, it felt impractical to discard it entirely.
+ * Instead, I decided to retain it as an additional feature to complement the OpenStreetMap-based view,
+ * offering users a lightweight and interactive alternative.
+ */
 
 const canvas = document.getElementById("visualization-canvas");
 const ctx = canvas.getContext("2d");
