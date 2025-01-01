@@ -21,7 +21,7 @@ const travelModes = [//
 ];
 
 /**
- * Calculate travel times for different modes of transport.
+ * Calculate the average travel times for different modes of transport.
  * Display travel times in hours and minutes.
  * But only display hours if the travel time is more than 1 hour.
  * Only display minutes if the travel time is less than 1 hour.

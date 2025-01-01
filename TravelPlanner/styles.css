@@ -301,6 +301,7 @@ body {
     height: 2rem;
 }
 
+/* Weather details for the saved locations */
 .saved-location-weather-info {
     font-size: 0.83rem;
 }

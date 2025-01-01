@@ -2,12 +2,17 @@
 const mapContainer = document.getElementById("map-container");
 const mapButton = document.getElementById("map-button");
 
-let map; // Reference to the Leaflet map instance
+// Reference to the Leaflet map instance
+let map;
 
 const defaultMapZoomLevel = 13;
 
 /**
- * Initialize the map with user and saved locations
+ * Initializes the map with the user's location and saved locations.
+ *
+ * This function creates and configures a Leaflet map instance if one does not already exist.
+ * It displays the user's location with a marker and connects it to saved locations with
+ * lines indicating distances. Each saved location is marked and labeled with a popup.
  */
 function initializeMap() {
 

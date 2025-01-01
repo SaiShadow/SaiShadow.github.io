@@ -61,6 +61,9 @@ a seamless experience across devices.
     - Fetches the user's current location to provide accurate weather information.
 - **Local Storage and Session Storage**:
     - Saves user data (e.g., locations) for persistent access.
+      - Local Storage: Stores the user's saved locations
+      - Session Storage: Stores the saved locations weather details and user 
+      coordinates for the current session.
 - **Responsive Design**:
     - Uses `rem` and media queries to ensure compatibility across devices.
 - **Canvas**:
@@ -102,7 +105,7 @@ a seamless experience across devices.
 ## **Future Improvements**
 
 - Integrate more travel data (e.g., traffic, public transport routes).
-- Add more visualization options (e.g., maps or charts).
+- ~~Add more visualization options (e.g., maps or charts).~~ -Already implemented
 - Add pinning or sorting locations based on distance.
 
 ---
