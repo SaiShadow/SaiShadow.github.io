@@ -29,7 +29,7 @@ function initializeMap() {
         savedLocations.forEach(location => {
             const marker = L.marker([location.latitude, location.longitude])
                 .addTo(map)
-                .bindPopup(location.name)
+                .bindPopup(location.name);
 
             const distance = calculateDistance(userCoordinates.latitude, userCoordinates.longitude, location.latitude, location.longitude);
 
