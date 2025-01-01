@@ -39,7 +39,7 @@ function initializeCanvasButtonEvent() {
 
 /**
  * Handle click event for the "Add Location" button
- * Add the location to the list of saved locations.
+ * Add the location currently in the input bar to the list of saved locations.
  */
 function handleAddLocationButtonClick() {
     addLocation().catch((error) => {

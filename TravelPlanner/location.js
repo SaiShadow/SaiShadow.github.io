@@ -103,6 +103,7 @@ function displaySavedLocations() {
 
     let row = '<div class="row g-3">'; // Bootstrap row for grid layout
 
+    // Generate a location card for each saved location.
     savedLocations.forEach(async (location, index) => {
         const targetDivId = `weather-${index}`;
         row += `

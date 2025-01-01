@@ -41,10 +41,17 @@ function initializeZoom() {
 function initializeButtons() {
     $("#dark-mode-button").on("click", toggleDarkMode);
     $("#reset-button").on("click", resetView);
+    $("#map-button").on("click", handleOpenMapButtonClick);
 }
 
 /**
- * Handle mouse down event
+ * Handles the "mousedown" event to initiate dragging on the canvas.
+ *
+ * This function is triggered when the user presses the mouse button down on the canvas.
+ * It sets the `isDragging` flag to `true` and records the starting position of the drag
+ * (the mouse's `clientX` and `clientY` coordinates). These values are used to calculate
+ * movement during the drag.
+ *
  */
 function handleMouseDown(e) {
     isDragging = true;
@@ -53,7 +60,10 @@ function handleMouseDown(e) {
 }
 
 /**
- * Handle mouse move event
+ * Handles the "mousemove" event to drag the canvas while the mouse is held down.
+ *
+ * This function calculates the difference in mouse position during a drag and updates
+ * the canvas offset accordingly. It redraws the visualization to reflect the new position.
  */
 function handleMouseMove(e) {
     e.preventDefault(); // Prevent browser scrolling
@@ -69,14 +79,21 @@ function handleMouseMove(e) {
 }
 
 /**
- * Handle mouse up event
+ * Handles the "mouseup" event to stop dragging the canvas.
+ *
+ * This function is triggered when the mouse button is released, disabling the dragging state.
  */
 function handleMouseUp() {
     isDragging = false;
 }
 
 /**
- * Handle touch start event
+ * Handles the "touchstart" event to initiate dragging or pinch zooming on the canvas.
+ *
+ * This function differentiates between single-touch and two-touch gestures:
+ * - A single touch initiates dragging by setting the starting position.
+ * - Two touches initiate pinch zooming by calculating the initial distance between the touches
+ *   and disabling dragging during the gesture.
  */
 function handleTouchStart(e) {
     // Distinct behavior for single and double touch, important for pinch zoom on mobile.
@@ -97,7 +114,11 @@ function handleTouchStart(e) {
 }
 
 /**
- * Handle touch move event
+ * Handles the "touchmove" event to support dragging and pinch zooming on the canvas.
+ *
+ * This function enables dragging with a single touch and pinch zooming with two touches.
+ * It recalculates the canvas position or scale based on the user's gestures and redraws
+ * the visualization accordingly.
  */
 function handleTouchMove(e) {
     e.preventDefault(); // Prevent browser scrolling
@@ -124,7 +145,10 @@ function handleTouchMove(e) {
 }
 
 /**
- * Handle touch end event
+ * Handles the "touchend" event to end dragging or pinch zooming on the canvas.
+ *
+ * This function is triggered when the user lifts their finger(s) from the canvas.
+ * It disables the dragging state and resets the pinch zoom state if applicable.
  */
 function handleTouchEnd() {
     isDragging = false;
@@ -134,7 +158,11 @@ function handleTouchEnd() {
 }
 
 /**
- * Handle zoom event
+ * Handles the "wheel" event to perform zooming on the canvas.
+ *
+ * This function adjusts the zoom level based on the user's scroll direction.
+ * It ensures zoom limits are respected and recalculates the canvas offset to
+ * center the zoom around the mouse cursor for a smooth and intuitive experience.
  */
 function handleZoom(e) {
     e.preventDefault();
@@ -170,13 +198,23 @@ function getPinchDistance(touches) {
 }
 
 /**
- * Reset the view to the initial state
+ * Reset the view of the map/canvas to the initial state
  */
 function resetView() {
-    offsetX = canvas.width / 2;
-    offsetY = canvas.height / 2;
-    scale = 1;
-    drawVisualization();
+    const isMapVisible = isMapOpen();
+
+    if (isMapVisible) {
+        // Reset map view to the default center and zoom level
+        if (map) {
+            map.setView([userCoordinates.latitude, userCoordinates.longitude], defaultMapZoomLevel);
+        }
+    } else {
+        // Reset canvas view
+        offsetX = canvas.width / 2;
+        offsetY = canvas.height / 2;
+        scale = 1;
+        drawVisualization();
+    }
 }
 
 /**
@@ -186,4 +224,63 @@ function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
     darkMode = !darkMode;
     drawVisualization();
+}
+
+/**
+ * Handles the "Open Map" button click event to toggle between the map and canvas views.
+ *
+ * This function toggles the visibility of the map (`#map-container`) and canvas (`.canvas-container`)
+ * when the "Open Map" or "Open Graph" button is clicked. It switches the views and updates the button's
+ * icon and text accordingly.
+ *
+ * Behavior:
+ * - If the map view is visible:
+ *   - Hides the map container.
+ *   - Displays the canvas container.
+ *   - Updates the button text and icon to "Open Map."
+ *   - Destroys the existing map instance to conserve resources.
+ *
+ * - If the map view is not visible:
+ *   - Displays the map container.
+ *   - Hides the canvas container.
+ *   - Updates the button text and icon to "Open Graph."
+ *   - Initializes the map view.
+ */
+function handleOpenMapButtonClick() {
+    const isMapVisible = isMapOpen();
+
+    if (isMapVisible) {
+        // Hide the map and show the canvas
+        mapContainer.style.display = "none";
+        document.querySelector(".canvas-container").style.display = "block";
+        mapButton.innerHTML = `<i class="bi bi-map-fill"></i> Open Map`;
+
+        // Destroy map instance to save resources
+        if (map) {
+            map.remove();
+            map = null;
+        }
+    } else {
+        // Show the map and hide the canvas
+        mapContainer.style.display = "block";
+        document.querySelector(".canvas-container").style.display = "none";
+        mapButton.innerHTML = `<i class="bi bi-graph-up"></i> Open Graph`;
+
+        // Initialize the map
+        initializeMap();
+    }
+}
+
+/**
+ * Checks if the map view is currently visible.
+ *
+ * This function determines whether the map container (`#map-container`)
+ * is currently displayed. It returns `true` if the map view is visible,
+ * and `false` otherwise.
+ *
+ * @returns {boolean} `true` if the map container is visible (`display: block`),
+ *                    otherwise `false`.
+ */
+function isMapOpen() {
+    return mapContainer.style.display === "block";
 }

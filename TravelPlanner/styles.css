@@ -301,11 +301,16 @@ body {
     height: 2rem;
 }
 
+/* Weather details for the saved locations */
+.saved-location-weather-info {
+    font-size: 0.83rem;
+}
+
 .distance {
     font-size: 0.9rem;
     color: #007bff;
     font-weight: bold;
-    margin-top: 0.3125rem;
+    margin-top: 0;
 }
 
 /* Right Section: Travel Times */
@@ -445,6 +450,10 @@ body {
 
     .location-name {
         font-size: 0.1rem;
+    }
+
+    .saved-location-weather-info {
+        font-size: 0.7rem;
     }
 
     .distance {
