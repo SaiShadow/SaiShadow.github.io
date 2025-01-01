@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +14,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="../TravelPlanner/styles.css">
     <link rel="stylesheet" href="styles-visualisation.css">
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
@@ -34,9 +35,14 @@
             <i class="bi bi-moon-stars"></i>
             Dark Mode
         </button>
+
+        <button id="map-button" class='button'>
+            <i class="bi bi-map-fill"></i>
+            Open Map
+        </button>
     </section>
 
-    <!-- Legend Section -> scrollable on smaller screens-->
+    <!-- Legend Section -->
     <section class="legend">
         <p>
             <span class="legend-box" id="short-distance"></span> Local (< 50 km)
@@ -50,6 +56,9 @@
     <section class="canvas-container">
         <canvas id="visualization-canvas" tabindex="0" aria-label="Visualization Canvas"></canvas>
     </section>
+
+    <!-- Map Container -->
+    <section id="map-container" style="display: none; height: 80vh; width: 100%;"></section>
 </div>
 
 <!-- Scripts -->
@@ -58,6 +67,9 @@
 <script src="draw.js"></script>
 <script src="EventHandler.js"></script>
 <script src="canvas.js"></script>
+<!-- Leaflet.js -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="map.js"></script>
 </body>
 
 </html>

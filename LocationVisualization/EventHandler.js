@@ -41,6 +41,7 @@ function initializeZoom() {
 function initializeButtons() {
     $("#dark-mode-button").on("click", toggleDarkMode);
     $("#reset-button").on("click", resetView);
+    $("#map-button").on("click", handleOpenMapButtonClick);
 }
 
 /**
@@ -173,10 +174,24 @@ function getPinchDistance(touches) {
  * Reset the view to the initial state
  */
 function resetView() {
-    offsetX = canvas.width / 2;
-    offsetY = canvas.height / 2;
-    scale = 1;
-    drawVisualization();
+    const isMapVisible = isMapOpen();
+
+    if (isMapVisible) {
+        // Reset map view to the default center and zoom level
+        if (map) {
+            map.setView([userCoordinates.latitude, userCoordinates.longitude], defaultMapZoomLevel);
+        }
+    } else {
+        // Reset canvas view
+        offsetX = canvas.width / 2;
+        offsetY = canvas.height / 2;
+        scale = 1;
+        drawVisualization();
+    }
+}
+
+function isMapOpen() {
+    return mapContainer.style.display === "block";
 }
 
 /**
@@ -186,4 +201,29 @@ function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
     darkMode = !darkMode;
     drawVisualization();
+}
+
+function handleOpenMapButtonClick() {
+    const isMapVisible = isMapOpen();
+
+    if (isMapVisible) {
+        // Hide the map and show the canvas
+        mapContainer.style.display = "none";
+        document.querySelector(".canvas-container").style.display = "block";
+        mapButton.innerHTML = `<i class="bi bi-map-fill"></i> Open Map`;
+
+        // Destroy map instance to save resources
+        if (map) {
+            map.remove();
+            map = null;
+        }
+    } else {
+        // Show the map and hide the canvas
+        mapContainer.style.display = "block";
+        document.querySelector(".canvas-container").style.display = "none";
+        mapButton.innerHTML = `<i class="bi bi-graph-up"></i> Open Graph`;
+
+        // Initialize the map
+        initializeMap();
+    }
 }
