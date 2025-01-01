@@ -190,10 +190,6 @@ function resetView() {
     }
 }
 
-function isMapOpen() {
-    return mapContainer.style.display === "block";
-}
-
 /**
  * Toggle dark mode
  */
@@ -226,4 +222,8 @@ function handleOpenMapButtonClick() {
         // Initialize the map
         initializeMap();
     }
+}
+
+function isMapOpen() {
+    return mapContainer.style.display === "block";
 }
