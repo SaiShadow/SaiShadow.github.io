@@ -10,6 +10,12 @@ const defaultMapZoomLevel = 13;
  * Initialize the map with user and saved locations
  */
 function initializeMap() {
+
+    if (!userCoordinates) {
+        alert("Can't get the user coordinates. Please wait until Travel Planner finds your location.");
+        return;
+    }
+
     if (!map) {
         // Initialize the map
         map = L.map('map-container').setView([userCoordinates.latitude, userCoordinates.longitude], defaultMapZoomLevel);
