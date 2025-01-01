@@ -227,6 +227,14 @@ canvas:active {
     /* Disable transition while dragging */
 }
 
+/* Map Styles */
+#map-container {
+    /* Dont show at start */
+    display: none;
+    height: 80vh;
+    width: 100%;
+}
+
 /* Responsive Design for Tablets and Larger Screens (Up to 1024px) */
 @media (max-width: 1024px) {
     h1 {
@@ -234,8 +242,11 @@ canvas:active {
     }
 
     #visualization-canvas {
-        height: 70vh;
-        width: 95%;
+        height: 75vh;
+    }
+
+    #map-container {
+        height: 75vh;
     }
 
     .container {
@@ -250,7 +261,11 @@ canvas:active {
     }
 
     #visualization-canvas {
-        height: 65vh;
+        height: 70vh;
+    }
+
+    #map-container {
+        height: 70vh;
     }
 
     .container {
@@ -292,6 +307,10 @@ canvas:active {
     }
 
     #visualization-canvas {
+        height: 60vh;
+    }
+
+    #map-container {
         height: 60vh;
     }
 
