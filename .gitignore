@@ -1,1 +1,16 @@
 /.VSCodeCounter/
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# logs
+*.log
+
+# node
+node_modules/
+
+# environment
+.env
